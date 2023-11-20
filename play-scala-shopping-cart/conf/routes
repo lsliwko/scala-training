@@ -1,0 +1,11 @@
+# Routes
+
+# create new shopping cart
+GET     /shopping-cart/new                                          controllers.ShoppingCartRestController.newEmpty()
+
+# update shopping cart
+GET     /shopping-cart/:shoppingCartId/items/empty                  controllers.ShoppingCartRestController.itemsEmpty(shoppingCartId:Long)
+GET     /shopping-cart/:shoppingCartId/items/add/:itemId            controllers.ShoppingCartRestController.itemsAdd(shoppingCartId:Long,itemId:Long)
+
+# return all available items for this shopping cart
+GET     /shopping-cart/:shoppingCartId/items/all-available          controllers.ShoppingCartRestController.itemsAll(shoppingCartId:Long)

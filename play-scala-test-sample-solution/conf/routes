@@ -1,0 +1,5 @@
+# Routes
+
+GET     /word/:word                 controllers.RestController.word(word:String)
+GET     /reset                      controllers.RestController.reset()
+GET     /top/:count                 controllers.RestController.top(count:Int)

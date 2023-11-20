@@ -1,0 +1,34 @@
+2023-10-12 17:23:22 [34mINFO [0;39m [36mplay.api.db.DefaultDBApi[0;39m [35m[0;39m Database [default] initialized
+2023-10-12 17:23:22 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Creating Pool for datasource 'default'
+2023-10-12 17:23:22 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m datasource [default] bound to JNDI as DefaultDS
+2023-10-12 17:23:22 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2023-10-12 17:23:22 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-10-12 19:12:13 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51m19s892ms).
+2023-10-12 20:31:17 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h19m4s839ms).
+2023-10-12 21:57:30 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h26m12s121ms).
+2023-10-12 23:22:15 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h24m45s531ms).
+2023-10-13 01:00:03 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h37m47s446ms).
+2023-10-13 02:21:50 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h21m47s900ms).
+2023-10-13 03:45:14 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h23m23s854ms).
+2023-10-13 04:33:03 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=47m48s606ms).
+2023-10-13 05:04:05 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=31m2s66ms).
+2023-10-13 06:27:01 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h22m55s986ms).
+2023-10-13 07:51:44 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h24m42s761ms).
+2023-10-13 09:30:14 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h38m30s276ms).
+2023-10-13 10:53:01 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h22m46s894ms).
+2023-10-13 11:12:09 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=19m8s585ms).
+2023-10-13 11:48:24 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=19m44s570ms).
+2023-10-13 12:04:51 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=56s789ms).
+2023-10-13 13:08:03 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52m12s101ms).
+2023-10-13 13:18:20 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m16s636ms).
+2023-10-13 13:55:24 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=37m3s923ms).
+2023-10-13 16:33:08 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m42s548ms).
+2023-10-13 16:34:49 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
+2023-10-13 16:34:49 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2023-10-13 16:34:49 [34mINFO [0;39m [36mplay.api.db.HikariCPConnectionPool[0;39m [35m[0;39m Shutting down connection pool.
+2023-10-13 16:34:49 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks
