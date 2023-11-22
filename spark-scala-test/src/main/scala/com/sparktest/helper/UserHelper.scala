@@ -1,11 +1,11 @@
 package com.sparktest.helper
 
 import com.sparktest.domain.UserData
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{Dataset, SparkSession}
 
 object UserHelper {
 
-  def loadTestUserDatas(sparkSession: SparkSession) = {
+  def loadTestUserDatas(sparkSession: SparkSession): Dataset[UserData] = {
 
     import sparkSession.implicits._
 

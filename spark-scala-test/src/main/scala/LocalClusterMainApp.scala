@@ -27,6 +27,21 @@ object LocalClusterMainApp extends App {
 
   import sparkSession.implicits._
 
+// get me all articles from authors who wrote about taxation
+
+  //MAP-REDUCE (Hadoop)
+  //1: get me all articles about taxation (MAP on all workers)
+  //2: get me all authors from those articles (REDUCE on master node)
+  //(another query)
+  //3: find all articles from those authors (MAP) (MAP on all workers)
+  //4: show me list of all those articles (REDUCE on my master node)
+
+  //MAP-SHUFFLE-REDUCE (Spark)
+  //1: get me all articles about taxation (MAP on all workers)
+  //2: I take list of all authors and send it to all workers ( DATA-SHUFFLING between nodes)
+  //3: find all articles from those authors (MAP on all workers)
+  //4: show me list of all those articles (REDUCE on my master node)
+
 
   val usersDataset = UserHelper.loadTestUserDatas(sparkSession)
   usersDataset.show(1000)

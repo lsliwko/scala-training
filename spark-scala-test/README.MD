@@ -5,8 +5,8 @@ https://www.chashnikov.dev/post/starting-up-spark-standalone-cluster-with-docker
 https://github.com/RayanRal/sparkling
 
 
-NOTE: to run from IntelliJ, add the following VMoptions:
-(click on Edit Configurations... -> Modify Options -> check VM Options)
+NOTE: to run from IntelliJ, add the following VM options:
+Click on Edit Configurations... -> Modify Options -> check VM Options, then parse VM options as below in run configuration:
 
 --add-opens=java.base/jdk.internal.ref=ALL-UNNAMED
 --add-opens=java.base/java.lang=ALL-UNNAMED
