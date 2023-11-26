@@ -13,7 +13,4 @@ libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.13.0"
 libraryDependencies += "org.apache.commons" % "commons-text" % "1.10.0"
 libraryDependencies += "org.scala-lang.modules" %% "scala-parallel-collections" % "1.0.4"
 
-// https://mvnrepository.com/artifact/org.typelevel/cats-core
 libraryDependencies += "org.typelevel" %% "cats-core" % "2.10.0"
-
-
