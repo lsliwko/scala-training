@@ -47,7 +47,9 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
             logger.info(s"[${this.getClass}] receives record: $record")
           })
       } catch {
-        case NonFatal(e) => logger.error(s"[${this.getClass}] error", e)
+        case NonFatal(e) =>
+          Thread.sleep(1000)
+          logger.error(s"[${this.getClass}] error", e)
       }
     }
     logger.info(s"[${this.getClass}] quits 'while(true)' loop.")
@@ -67,7 +69,7 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
       Done
     }(executionContext).andThen {
       case Success(_) => logger.info(s"Shutdown-task[${this.getClass}-stop] succeed.")
-      case Failure(e) => logger.error(s"Shutdown-task[${this.getClass}-stop] fails.", e)
+      case Failure(e) => logger.error(s"Shutdown-task[${this.getClass}-stop] fails with error", e)
     }(executionContext)
   }
 }

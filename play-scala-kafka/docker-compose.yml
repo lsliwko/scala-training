@@ -29,7 +29,7 @@ services:
 
   # Creates Kafka topics
   kafka-init-topics:
-    image: 'bitnami/kafka:3.4'
+    image: 'bitnami/kafka:3.6'
     command: "/opt/bitnami/kafka/bin/kafka-topics.sh --create --if-not-exists --bootstrap-server kafka:9092 --replication-factor 1 --partitions 1 --topic play-scala-kafka-topic"
     depends_on:
       kafka:
