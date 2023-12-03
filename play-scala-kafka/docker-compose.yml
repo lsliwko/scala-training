@@ -1,0 +1,14 @@
+version: '3'
+name: 'play-scala-kafka'  # containers are prefixed with name
+services:
+
+  # Main application
+  kafka-demo:
+    build: .  # build from local Dockerfile
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 9000:9000
+    environment:
+      APP_VERSION: $(APP_VERSION) # reads variables from local .env file

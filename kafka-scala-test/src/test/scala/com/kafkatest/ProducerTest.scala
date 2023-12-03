@@ -3,9 +3,7 @@ package com.kafkatest.helper
 import com.kafkatest.helper.serializer.{TestJsonDeserializer, TestJsonSerializer}
 import io.github.embeddedkafka.EmbeddedKafka
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
-import org.apache.kafka.common.serialization.{Deserializer, Serializer}
-import org.apache.spark.sql.functions.{col, udf}
-import org.apache.spark.sql.streaming.{OutputMode, Trigger}
+import org.apache.kafka.common.serialization._
 import org.scalatest.flatspec._
 import org.scalatest.matchers.should.Matchers._
 
@@ -14,9 +12,11 @@ import java.util.Properties
 
 class ProducerTest extends AnyFlatSpec with EmbeddedKafkaTester {
 
+  import org.apache.kafka.common.serialization.StringSerializer
+
   val props = new Properties()
   props.put("bootstrap.servers", "localhost:9092")
-  props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
+  props.put("key.serializer", classOf[org.apache.kafka.common.serialization.StringSerializer].toString)
   props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 
   props.put("acks", "all")

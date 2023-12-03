@@ -1,0 +1,4 @@
+# Routes
+
+# messages
+GET     /kafka/all-messages                                           controllers.KafkaRestController.allMessages()
