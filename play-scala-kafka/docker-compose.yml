@@ -7,8 +7,9 @@ networks:
 
 services:
 
+  # Kafka broker
   kafka:
-    image: 'bitnami/kafka:3.2.3'
+    image: 'bitnami/kafka:3.4'
     networks:
       - app-tier
     environment:
@@ -19,12 +20,23 @@ services:
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
 
+  # Creates Kafka topics
+  kafka-init-topics:
+    image: 'bitnami/kafka:3.4'
+    command: "/opt/bitnami/kafka/bin/kafka-topics.sh --create --if-not-exists --bootstrap-server kafka:9092 --replication-factor 1 --partitions 1 --topic play-scala-kafka-topic"
+    depends_on:
+      kafka:
+        condition: service_started
+    networks:
+      - app-tier
+
   # Main application
   app:
     build: .  # build from local Dockerfile
     restart: always
     depends_on:
-      - kafka
+      kafka-init-topics:
+        condition: service_completed_successfully
     ports:
       - 9000:9000
     networks:

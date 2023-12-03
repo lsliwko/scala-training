@@ -23,19 +23,19 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
 
   val messages = new scala.collection.mutable.ListBuffer[String]()
 
-  logger.info(s"Starting ${this.getClass}")
+  logger.info(s"Starting [${this.getClass}]")
 
   private val executionContext: ExecutionContext = ExecutionContext.fromExecutor(Executors.newSingleThreadExecutor())
   private val stopConsumer: AtomicBoolean = new AtomicBoolean(false)
 
   private val properties = new Properties()
-  properties.put("bootstrap.servers", "kafka:9093")
-  properties.put("group.id", s"sample-group-id")
+  properties.put("bootstrap.servers", "kafka:9093") //from bitami/kafka
+  properties.put("group.id", s"kafka-group-1")  //used to load-balance messages among members of the same group
   properties.put("key.deserializer", classOf[org.apache.kafka.common.serialization.StringDeserializer])
   properties.put("value.deserializer", classOf[org.apache.kafka.common.serialization.StringDeserializer])
 
   val kafkaConsumer = new KafkaConsumer[String, String](properties)
-  kafkaConsumer.subscribe(Set("sample-topic").asJava)
+  kafkaConsumer.subscribe(Set("play-scala-kafka-topic").asJava)
 
   //start async so module loads OK
   Future {
@@ -43,17 +43,17 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
       kafkaConsumer.poll(Duration.ofSeconds(3)).asScala
         .foreach(record => {
           messages.addOne(record.value())
-          logger.info(s"${this.getClass} receives record: $record")
+          logger.info(s"[${this.getClass}] receives record: $record")
         })
     }
-    logger.info(s"${this.getClass} quits 'while(true)' loop.")
+    logger.info(s"[${this.getClass}] quits 'while(true)' loop.")
   }(executionContext)
     .andThen(_ => kafkaConsumer.close())(executionContext)
     .andThen {
       case Success(_) =>
-        logger.info(s"${this.getClass} succeed.")
+        logger.info(s"[${this.getClass}] succeed.")
       case Failure(e) =>
-        logger.error(s"${this.getClass} fails.", e)
+        logger.error(s"[${this.getClass}] fails.", e)
     }(executionContext)
 
   coordinatedShutdown.addTask(CoordinatedShutdown.PhaseServiceStop, s"${this.getClass}-stop") { () =>

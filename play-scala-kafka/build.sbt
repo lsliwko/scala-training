@@ -15,7 +15,4 @@ libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 
 libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.13.0"
 
-libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.2.3"
-
-PlayKeys.externalizeResourcesExcludes += baseDirectory.value / "conf" / "META-INF" / "persistence.xml"
-
+libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.4.0"
