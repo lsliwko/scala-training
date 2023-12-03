@@ -18,4 +18,4 @@ COPY target/universal/stage/ ${APP_HOME}/
 EXPOSE 9000
 
 #to generate Play secret: sbt playGenerateSecret
-ENTRYPOINT sleep 5 && bin/play-scala-kafka -Dplay.http.secret.key=3Xz1ZXmNVeM9eA98NkxR
+ENTRYPOINT bin/play-scala-kafka -Dplay.http.secret.key=3Xz1ZXmNVeM9eA98NkxR

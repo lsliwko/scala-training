@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 import scala.concurrent.{ExecutionContext, Future}
 import scala.jdk.CollectionConverters._
 import scala.util._
-
 import javax.inject.Singleton
+import scala.util.control.NonFatal
 
 
 @Singleton
@@ -40,20 +40,24 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
   //start async so module loads OK
   Future {
     while (!stopConsumer.get()) {
-      kafkaConsumer.poll(Duration.ofSeconds(3)).asScala
-        .foreach(record => {
-          messages.addOne(record.value())
-          logger.info(s"[${this.getClass}] receives record: $record")
-        })
+      try {
+        kafkaConsumer.poll(Duration.ofSeconds(3)).asScala
+          .foreach(record => {
+            messages.addOne(record.value())
+            logger.info(s"[${this.getClass}] receives record: $record")
+          })
+      } catch {
+        case NonFatal(e) => logger.error(s"[${this.getClass}] error", e)
+      }
     }
     logger.info(s"[${this.getClass}] quits 'while(true)' loop.")
   }(executionContext)
     .andThen(_ => kafkaConsumer.close())(executionContext)
     .andThen {
       case Success(_) =>
-        logger.info(s"[${this.getClass}] succeed.")
+        logger.info(s"[${this.getClass}] succeed")
       case Failure(e) =>
-        logger.error(s"[${this.getClass}] fails.", e)
+        logger.error(s"[${this.getClass}] fails with error", e)
     }(executionContext)
 
   coordinatedShutdown.addTask(CoordinatedShutdown.PhaseServiceStop, s"${this.getClass}-stop") { () =>
