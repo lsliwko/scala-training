@@ -1,6 +1,6 @@
 FROM amazoncorretto:11-alpine-jdk
 
-ENV APP_HOME=/var/lib/shopping-cart
+ENV APP_HOME=/var/lib/play-scala-kafka
 
 RUN mkdir -p ${APP_HOME}
 WORKDIR ${APP_HOME}
@@ -18,4 +18,4 @@ COPY target/universal/stage/ ${APP_HOME}/
 EXPOSE 9000
 
 #to generate Play secret: sbt playGenerateSecret
-ENTRYPOINT bin/play-scala-shopping-cart -Dplay.http.secret.key=3Xz1ZXmNVeM9eA98NkxR
+ENTRYPOINT bin/play-scala-kafka -Dplay.http.secret.key=3Xz1ZXmNVeM9eA98NkxR

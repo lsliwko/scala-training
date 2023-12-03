@@ -1,10 +1,6 @@
 #!/bin/sh
 
-echo "Getting version..."
-APP_VERSION=`sbt -Dsbt.supershell=false -error "print version"`
-echo "Building version ${APP_VERSION}"
-
-DOCKER_IMAGE=docker.digital.homeoffice.gov.uk/scala/play-scala-shopping-cart:${APP_VERSION}
+DOCKER_IMAGE=docker.digital.homeoffice.gov.uk/scala/play-scala-kafka:${APP_VERSION}
 
 echo "Building Play Stage..."
 sbt clean stage
