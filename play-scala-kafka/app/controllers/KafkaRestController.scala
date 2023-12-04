@@ -26,6 +26,7 @@ class KafkaRestController @Inject()(
   def allMessages(): Action[AnyContent] = Action.async { _ =>
     Future {
       Ok(
+        s"Messages: ${kafkaMessagesConsumer.messages.size}\n" +
         kafkaMessagesConsumer.messages
           .zipWithIndex
           .map { case (message, index) => s"$index: $message"}

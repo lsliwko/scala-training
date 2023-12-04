@@ -39,7 +39,9 @@ services:
 
   # Main application
   app:
-    build: .  # build from local Dockerfile
+    build:
+      context: .  # build from local Dockerfile
+      no_cache: true
     restart: always
     depends_on:
       kafka-init-topics:
