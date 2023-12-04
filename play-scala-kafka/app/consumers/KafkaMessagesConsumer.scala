@@ -29,7 +29,7 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
   private val stopConsumer: AtomicBoolean = new AtomicBoolean(false)
 
   private val properties = new Properties()
-  properties.put("bootstrap.servers", "kafka:9093") //from bitami/kafka
+  properties.put("bootstrap.servers", "kafka:9092") //from bitami/kafka
   properties.put("group.id", s"kafka-group-1")  //used to load-balance messages among members of the same group
   properties.put("key.deserializer", classOf[org.apache.kafka.common.serialization.StringDeserializer])
   properties.put("value.deserializer", classOf[org.apache.kafka.common.serialization.StringDeserializer])
@@ -41,14 +41,15 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
   Future {
     while (!stopConsumer.get()) {
       try {
-        kafkaConsumer.poll(Duration.ofSeconds(3)).asScala
+        logger.info(s"[${this.getClass}] pooling for records...")
+        kafkaConsumer.poll(Duration.ofSeconds(10)).asScala
           .foreach(record => {
             messages.addOne(record.value())
             logger.info(s"[${this.getClass}] receives record: $record")
           })
       } catch {
         case NonFatal(e) =>
-          Thread.sleep(1000)
+          Thread.sleep(5000)
           logger.error(s"[${this.getClass}] error", e)
       }
     }
