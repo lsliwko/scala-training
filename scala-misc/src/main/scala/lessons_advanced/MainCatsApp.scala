@@ -28,6 +28,8 @@ object MainCatsApp extends App {
   val map1 = immutable.Map("a" -> 1, "b" -> 2, "c" -> 0)
   val map2 = immutable.Map("a" -> 2, "b" -> -1, "d" -> 4)
 
+  //Monoid[Int](1)
+
   // Combine two maps by summing the values with common keys.
   println {
     "|+|: " +
@@ -54,6 +56,7 @@ object MainCatsApp extends App {
     stringList.foldMap(str => str.length)
   }
 
+  //MonoidK[Int](4) combine MonoidK[7] = MonoidK[7] (higher value)
   //apply function to map value into Option, then return first non-empty (Some)
   println {
     "foldMapK: " +
@@ -76,11 +79,11 @@ object MainCatsApp extends App {
 
   println {
     "traverse (one empty): " +
-    stringList.traverse {
+    stringList.traverse { str => str match {
       case str@"aaa" => str.some
       case str@"b" => None
       case str@"cc" => str.some
-    }
+    } }
   }
 
 
@@ -108,9 +111,9 @@ object MainCatsApp extends App {
   }
 
 
-  val opt1 = Option("1")
-  val opt2 = Option("2")
-  val opt3 = None  //Option("3")
+  val opt1 = Option("1")  //Monoid[Int](1)
+  val opt2 = Option("2")  //Monoid[Int](2)
+  val opt3 = None  //Monoid[Int](null)
   println {
     "tupled: " +
     (opt1, opt2, opt3).tupled
