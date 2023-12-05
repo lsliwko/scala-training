@@ -23,6 +23,6 @@ Once there are more consumers than partitions, the excess consumers will sit idl
 
 # Publish message
 kafka-console-producer.sh --topic play-scala-kafka-topic --bootstrap-server kafka:9092
+
 kafka-console-consumer.sh --topic play-scala-kafka-topic --from-beginning --bootstrap-server kafka:9092
-
-
+kafka-consumer-groups.sh --bootstrap-server kafka:9092 --describe --group kafka-group-1

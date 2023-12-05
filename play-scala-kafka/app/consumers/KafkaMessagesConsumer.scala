@@ -43,11 +43,14 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
           logger.info(s"KafkaMessagesConsumer pooling for records...")
           kafkaConsumer.poll(Duration.ofSeconds(5)).asScala
             .foreach(record => {
-              messages.addOne(record.value())
+              val message = record.value()
+              messages.addOne(message)
               logger.info(s"KafkaMessagesConsumer received record: $record")
             })
         } catch {
-          case _: InterruptedException | InterruptException => //nothing to do
+          case _ : java.lang.InterruptedException | _ : org.apache.kafka.common.errors.InterruptException =>
+            //interruption exceptions, nothing to do
+
           case NonFatal(e) =>
             logger.error(s"KafkaMessagesConsumer error", e)
             Thread.sleep(5000)
