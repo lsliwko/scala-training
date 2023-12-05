@@ -9,4 +9,4 @@ cat > .env <<-EOPROP
 EOPROP
 
 # reads Dockerfile and .env
-docker-compose up
+docker-compose up --build --force-recreate --no-deps

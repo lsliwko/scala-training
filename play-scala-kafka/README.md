@@ -7,14 +7,15 @@ curl localhost:9000/kafka/all-messages
 docker-compose up
 
 
-# Debug in Play:
-Main-class: play.core.server.ProdServerStart
-VM args: -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9999 -Dapplication.path=. -Dplay.http.secret.key=3Xz1ZXmNVeM9eA98NkxR
-
-
 # Install Docker via Cask
 brew uninstall --cask docker --force
 brew install --force homebrew/cask/docker
+
+
+# Debug Play in IntelliJ
+Main-class: play.core.server.ProdServerStart
+VM args: -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9999 -Dapplication.path=. -Dplay.http.secret.key=3Xz1ZXmNVeM9eA98NkxR
+
 
 
 # Kafka client (from Kafka container):
