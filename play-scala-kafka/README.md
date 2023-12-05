@@ -4,8 +4,13 @@ https://www.baeldung.com/java-kafka-bootstrap-server
 
 # API description
 curl localhost:9000/kafka/all-messages
-
 docker-compose up
+
+
+# Debug in Play:
+Main-class: play.core.server.ProdServerStart
+VM args: -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9999 -Dapplication.path=. -Dplay.http.secret.key=3Xz1ZXmNVeM9eA98NkxR
+
 
 # Install Docker via Cask
 brew uninstall --cask docker --force
@@ -26,3 +31,9 @@ kafka-console-producer.sh --topic play-scala-kafka-topic --bootstrap-server kafk
 
 kafka-console-consumer.sh --topic play-scala-kafka-topic --from-beginning --bootstrap-server kafka:9092
 kafka-consumer-groups.sh --bootstrap-server kafka:9092 --describe --group kafka-group-1
+
+# Reset offsets
+kafka-consumer-groups.sh --bootstrap-server kafka:9092  --group kafka-group-1 --topic play-scala-kafka-topic --reset-offsets --to-datetime 2000-01-01T00:00:00.000 --execute
+
+
+
