@@ -17,7 +17,7 @@ class KafkaRestController @Inject()(
   val controllerComponents: ControllerComponents
 )(implicit executionContext: ExecutionContext) extends BaseController {
 
-  private val logger = Logger(getClass)
+  private val logger = Logger("kafka")
 
   private val gson = new GsonBuilder()
     .setPrettyPrinting()

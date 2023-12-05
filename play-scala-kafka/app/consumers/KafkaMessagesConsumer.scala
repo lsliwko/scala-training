@@ -4,6 +4,7 @@ import akka.Done
 import akka.actor.CoordinatedShutdown
 import com.google.inject.Inject
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.apache.kafka.common.errors.InterruptException
 import play.api.Logger
 
 import java.time.Duration
@@ -13,15 +14,13 @@ import scala.jdk.CollectionConverters._
 import scala.util._
 import javax.inject.Singleton
 import scala.util.control.NonFatal
-
-
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) {
   //https://dev.to/psstepniewski/plain-kafka-consumer-in-play-framework-2a4a
 
-  private val logger = Logger(getClass)
+  private val logger = Logger("kafka")
   val messages = new scala.collection.mutable.ListBuffer[String]()
 
   logger.info(s"Starting KafkaMessagesConsumer")
@@ -48,7 +47,7 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
               logger.info(s"KafkaMessagesConsumer received record: $record")
             })
         } catch {
-          case InterruptedException => //nothing to do
+          case _: InterruptedException | InterruptException => //nothing to do
           case NonFatal(e) =>
             logger.error(s"KafkaMessagesConsumer error", e)
             Thread.sleep(5000)
