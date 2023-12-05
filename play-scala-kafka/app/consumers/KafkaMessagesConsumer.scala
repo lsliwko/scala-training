@@ -4,31 +4,27 @@ import akka.Done
 import akka.actor.CoordinatedShutdown
 import com.google.inject.Inject
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import play.api.{Logger, Logging}
+import play.api.Logger
 
 import java.time.Duration
 import java.util.Properties
-import java.util.concurrent.Executors
-import java.util.concurrent.atomic.AtomicBoolean
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.Future
 import scala.jdk.CollectionConverters._
 import scala.util._
 import javax.inject.Singleton
 import scala.util.control.NonFatal
 
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 @Singleton
 class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) {
   //https://dev.to/psstepniewski/plain-kafka-consumer-in-play-framework-2a4a
 
   private val logger = Logger(getClass)
-
-  logger.info(s"Starting KafkaMessagesConsumer")
-
   val messages = new scala.collection.mutable.ListBuffer[String]()
 
-  private val executionContext: ExecutionContext = ExecutionContext.fromExecutor(Executors.newSingleThreadExecutor())
-  private val stopConsumer: AtomicBoolean = new AtomicBoolean(false)
+  logger.info(s"Starting KafkaMessagesConsumer")
 
   private val properties = new Properties()
   properties.put("bootstrap.servers", "localhost:9094,kafka:9092") //from bitami/kafka
@@ -36,44 +32,43 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
   properties.put("key.deserializer", classOf[org.apache.kafka.common.serialization.StringDeserializer])
   properties.put("value.deserializer", classOf[org.apache.kafka.common.serialization.StringDeserializer])
 
-  val kafkaConsumer = new KafkaConsumer[String, String](properties)
+  private val kafkaConsumer = new KafkaConsumer[String, String](properties)
   kafkaConsumer.subscribe(Set("play-scala-kafka-topic").asJava)
 
-  //start async so module loads OK
-  val pollingFuture = Future {
-    logger.info(s"KafkaMessagesConsumer started")
-    while (!stopConsumer.get()) {
-      try {
-        logger.info(s"KafkaMessagesConsumer pooling for records...")
-        kafkaConsumer.poll(Duration.ofSeconds(3)).asScala
-          .foreach(record => {
-            messages.addOne(record.value())
-            logger.info(s"KafkaMessagesConsumer receives record: $record")
-          })
-      } catch {
-        case NonFatal(e) =>
-          Thread.sleep(5000)
-          logger.error(s"KafkaMessagesConsumer error", e)
-      }
-    }
-    logger.info(s"KafkaMessagesConsumer quits 'while(true)' loop.")
-  }(executionContext)
-    .andThen(_ => kafkaConsumer.close())(executionContext)
-    .andThen {
-      case Success(_) =>
-        logger.info(s"KafkaMessagesConsumer succeed")
-      case Failure(e) =>
-        logger.error(s"KafkaMessagesConsumer fails with error", e)
-    }(executionContext)
+  private val pollingThread = new Thread {
+    override def run(): Unit = {
 
-  coordinatedShutdown.addTask(CoordinatedShutdown.PhaseServiceStop, s"KafkaMessagesConsumer-stop") { () =>
-    logger.info(s"Shutdown-task[KafkaMessagesConsumer-stop] starts.")
-    stopConsumer.set(true)
-    Future {
-      Done
-    }(executionContext).andThen {
-      case Success(_) => logger.info(s"Shutdown-task[KafkaMessagesConsumer-stop] succeed.")
-      case Failure(e) => logger.error(s"Shutdown-task[KafkaMessagesConsumer-stop] fails with error", e)
-    }(executionContext)
+      logger.info(s"KafkaMessagesConsumer pooling thread started")
+      while (!isInterrupted) {
+        try {
+          logger.info(s"KafkaMessagesConsumer pooling for records...")
+          kafkaConsumer.poll(Duration.ofSeconds(5)).asScala
+            .foreach(record => {
+              messages.addOne(record.value())
+              logger.info(s"KafkaMessagesConsumer received record: $record")
+            })
+        } catch {
+          case InterruptedException => //nothing to do
+          case NonFatal(e) =>
+            logger.error(s"KafkaMessagesConsumer error", e)
+            Thread.sleep(5000)
+        }
+      }
+
+      logger.info(s"KafkaMessagesConsumer pooling thread stopped")
+      Try { kafkaConsumer.close() }
+    }
   }
+  pollingThread.start()
+
+
+  coordinatedShutdown.addTask(
+    CoordinatedShutdown.PhaseServiceStop,
+    s"KafkaMessagesConsumer-stop"
+  ) { () => Future {
+    pollingThread.interrupt()
+    while (pollingThread.isAlive) {}
+    Done
+  } }
+
 }
