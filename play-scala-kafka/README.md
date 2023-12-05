@@ -17,6 +17,10 @@ brew install --force homebrew/cask/docker
 kafka-topics.sh --create --topic play-scala-kafka-topic --bootstrap-server kafka:9092
 kafka-topics.sh --list  --bootstrap-server kafka:9092
 
+
+Note: Each consumer consumes from only one partition.
+Once there are more consumers than partitions, the excess consumers will sit idle and receive no messages.
+
 # Publish message
 kafka-console-producer.sh --topic play-scala-kafka-topic --bootstrap-server kafka:9092
 kafka-console-consumer.sh --topic play-scala-kafka-topic --from-beginning --bootstrap-server kafka:9092
