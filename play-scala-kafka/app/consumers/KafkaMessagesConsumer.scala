@@ -4,7 +4,6 @@ import akka.Done
 import akka.actor.CoordinatedShutdown
 import com.google.inject.Inject
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.apache.kafka.common.errors.InterruptException
 import play.api.Logger
 
 import java.time.Duration
@@ -65,8 +64,8 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
 
 
   coordinatedShutdown.addTask(
-    CoordinatedShutdown.PhaseServiceStop,
-    s"KafkaMessagesConsumer-stop"
+    phase = CoordinatedShutdown.PhaseServiceStop,
+    taskName = "KafkaMessagesConsumer-stop"
   ) { () => Future {
     pollingThread.interrupt()
     while (pollingThread.isAlive) {}
