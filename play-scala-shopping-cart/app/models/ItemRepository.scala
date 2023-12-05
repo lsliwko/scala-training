@@ -33,6 +33,12 @@ class ItemRepository @Inject()(dbapi: DBApi)(implicit databaseExecutionContext: 
     }
   }
 
+  def findByIds(ids: List[Long]): Future[List[Item]] = Future {
+    db.withConnection { implicit connection =>
+      SQL"select * from item where id in ($ids)".as(simple.*)
+    }
+  }
+
   def all: Future[Seq[Item]] = Future {
     db.withConnection { implicit connection =>
       // Anorm streaming
@@ -60,7 +66,7 @@ class ItemRepository @Inject()(dbapi: DBApi)(implicit databaseExecutionContext: 
 
   def insert(item: Item): Future[Option[Long]] = Future {
     db.withConnection { implicit connection =>
-      SQL"insert into item values ((select next value for item_seq), {name})"
+      SQL"insert into item values (nextval('item_seq'), {name})"
         .bind(item).executeInsert()
     }
   }

@@ -1,5 +1,4 @@
 name := """play-scala-shopping-cart"""
-version := "1.0.0"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
@@ -19,6 +18,6 @@ libraryDependencies += jdbc
 libraryDependencies += evolutions
 libraryDependencies += "com.h2database" % "h2" % "1.4.200"
 libraryDependencies += "org.playframework.anorm" %% "anorm" % "2.7.0"
+libraryDependencies += "org.postgresql" % "postgresql" % "42.5.4"
 
 PlayKeys.externalizeResourcesExcludes += baseDirectory.value / "conf" / "META-INF" / "persistence.xml"
-

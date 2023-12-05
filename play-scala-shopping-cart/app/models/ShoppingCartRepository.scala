@@ -1,56 +1,47 @@
 package models
 
-import javax.inject.Inject
-import scala.util.{Failure, Success}
-import anorm._
-import anorm.SqlParser.{get, list, long, scalar, str}
-import models.{DatabaseExecutionContext, Item}
-import play.api.Logger
+import anorm.SqlParser.get
+import anorm.{SqlStringInterpolation, ~}
 import play.api.db.DBApi
 
+import javax.inject.Inject
 import scala.concurrent.Future
 
-case class ShoppingCart (
-                          id:Option[Long],
-                          itemsJson: String
-                        )
+case class ShoppingCartEntity(id: Option[Long] = None,
+                        itemIDs: List[Long] = List.empty) {
+  def getItemIDsAsString: String = itemIDs.mkString(",")
+  def emptyItems: ShoppingCartEntity = this.copy(itemIDs = List.empty)
+}
 
-object ShoppingCart {
-  implicit def toParameters: ToParameterList[ShoppingCart] = Macro.toParameters[ShoppingCart]
+object ShoppingCartEntity{
+  def apply(id: Option[Long], itemIDsAsString: String): ShoppingCartEntity = itemIDsAsString match {
+      case null => ShoppingCartEntity(id)
+      case "" => ShoppingCartEntity(id)
+      case items => ShoppingCartEntity(id, items.split(",").map(_.toLong).toList)
+    }
 }
 
 @javax.inject.Singleton
 class ShoppingCartRepository @Inject()(dbapi: DBApi)(implicit databaseExecutionContext: DatabaseExecutionContext) {
 
-  private val logger = Logger(getClass)
   private val db = dbapi.database("default")
+  private[models] val parser = get[Option[Long]]("shoppingcart.id") ~ get[Option[String]]("shoppingcart.items") map { case id ~ items => ShoppingCartEntity(id, items.getOrElse(""))}
 
-  private[models] val simple =
-    get[Option[Long]]("shopping_cart.id") ~ str("itemsJson.name") map { case id ~ itemsJson => ShoppingCart(id, itemsJson) }
-
-  def findById(id: Long): Future[Option[ShoppingCart]] = Future {
+  def insert(): Future[Option[Long]] = Future {
     db.withConnection { implicit connection =>
-      SQL"select * from shopping_cart where id = $id".as(simple.singleOpt)
+      SQL"insert into shoppingcart values (nextval('shoppingcart_seq'), null)".executeInsert()
     }
   }
 
-  def update(id: Long, shoppingCart: ShoppingCart) = Future {
+  def findById(id: Long): Future[Option[ShoppingCartEntity]] = Future {
     db.withConnection { implicit connection =>
-      SQL"update shopping_cart set name = {name} where id = {id}"
-        .bind(shoppingCart.copy(id = Some(id))).executeUpdate()
+      SQL"select * from shoppingcart where id = $id".as(parser.singleOpt)
     }
   }
 
-  def insert(shoppingCart: ShoppingCart): Future[Option[Long]] = Future {
+  def update(shoppingCart: ShoppingCartEntity): Future[Int] = Future {
     db.withConnection { implicit connection =>
-      SQL"insert into shopping_cart values ((select next value for shopping_cart_seq), {name})"
-        .bind(shoppingCart).executeInsert()
-    }
-  }
-
-  def delete(id: Long): Future[Int] = Future {
-    db.withConnection { implicit connection =>
-      SQL"delete from shopping_cart where id = ${id}".executeUpdate()
+      SQL"update shoppingcart set items = ${shoppingCart.getItemIDsAsString} where id = ${shoppingCart.id}".executeUpdate()
     }
   }
 

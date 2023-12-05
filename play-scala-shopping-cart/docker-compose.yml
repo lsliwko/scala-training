@@ -1,50 +1,37 @@
-version: '3'
-name: 'play-scala'  # containers are prefixed with name
 services:
-
-  # Database container
   db:
-    image: postgres:16.0
-    container_name: postgresdb # default might not work, use default.url="jdbc:postgresql://postgresdb:5432/postgres?user=postgres&password=root"
-    restart: always # restart policy when container fails, here: always restart
+    image: postgres
+    container_name: play-shop-compose
+    restart: always
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: root # Postgres image needs password to start
-                              # Note: docker inspect will still reveal password
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=playshop
 
   # Database admin tool container (localhost:8080)
   db-adminer:
     image: adminer  # version defaults to 'latest'
     restart: always
     depends_on: # container startup will wait till 'db' container is in a running_state.
-                # Note: it doesn't mean application within container has completed initialisation.
-                # For more exhaustive state check see:
-                #  https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck
-                #  https://stackoverflow.com/questions/47710767/what-is-the-alternative-to-condition-form-of-depends-on-in-docker-compose-versio
+      # Note: it doesn't mean application within container has completed initialisation.
+      # For more exhaustive state check see:
+      #  https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck
+      #  https://stackoverflow.com/questions/47710767/what-is-the-alternative-to-condition-form-of-depends-on-in-docker-compose-versio
       - db
     ports:
       - 8080:8080
 
-  # Main application
-  shopping-cart:
-    build: .  # build from local Dockerfile
-    restart: always
+  play-scala-shoppping-cart:
     depends_on:
       - db
+    build: .
     ports:
       - 9000:9000
     environment:
-      APP_VERSION: $(APP_VERSION) # reads variables from local .env file
-
-  # Toolbox container (here, just output message and terminate)
-  message:
-    image: busybox
-    depends_on:
-      - shopping-cart
-    command:
-      - /bin/sh
-      - -c
-      - |
-        echo "APPLICATION: curl localhost:9000/shopping-cart/new"
-        echo "DB ADMINER: http://localhost:8080/?pgsql=db&username=postgres"
+      - POSTGRES_DB_HOST=db
+      - POSTGRES_DB_NAME=playshop
+      - POSTGRES_DB_USERNAME=admin
+      - POSTGRES_DB_PASSWORD=password
+    restart: always
