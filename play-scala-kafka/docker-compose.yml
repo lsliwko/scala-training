@@ -23,7 +23,7 @@ services:
     networks:
       - app-tier
 
-  # Creates Kafka topics
+  # Creates Kafka topics and exits
   kafka-init-topics:
     image: 'bitnami/kafka:latest'
     # Here we create topic with ONE partition only, i.e. only one consumer will be able to connect and receive messages from 'play-scala-kafka-topic'
