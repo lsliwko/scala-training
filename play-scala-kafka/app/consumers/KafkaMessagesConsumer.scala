@@ -48,16 +48,14 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
             })
         } catch {
           case _ : java.lang.InterruptedException | _ : org.apache.kafka.common.errors.InterruptException =>
-            //interruption exceptions, nothing to do
+            Try { kafkaConsumer.close() }
+            logger.info(s"KafkaMessagesConsumer pooling thread stopped")
 
           case NonFatal(e) =>
             logger.error(s"KafkaMessagesConsumer error", e)
             Thread.sleep(5000)
         }
       }
-
-      logger.info(s"KafkaMessagesConsumer pooling thread stopped")
-      Try { kafkaConsumer.close() }
     }
   }
   pollingThread.start()
