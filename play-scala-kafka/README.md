@@ -4,6 +4,7 @@ https://medium.com/javarevisited/kafka-partitions-and-consumer-groups-in-6-mins-
 
 https://ibm-cloud-architecture.github.io/refarch-eda/technology/kafka-consumers/
 
+https://developer.confluent.io/learn/kraft/
 https://www.baeldung.com/java-kafka-bootstrap-server
 
 

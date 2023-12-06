@@ -25,8 +25,11 @@ class KafkaMessagesConsumer @Inject()(coordinatedShutdown: CoordinatedShutdown) 
   logger.info(s"Starting KafkaMessagesConsumer")
 
   private val properties = new Properties()
+  //first, we connect any bootstrap server
+  //bootstrap server sends us information about current topology (e.g. brokers' ip addresses)
+  //then we connect to broker which assigns us partitions to read from
   properties.put("bootstrap.servers", "localhost:9094,kafka:9092") //from bitami/kafka
-  properties.put("group.id", s"kafka-group-1")  //used to load-balance messages among members of the same group
+  properties.put("group.id", "kafka-group-1")  //used to load-balance messages among members of the same group
   properties.put("key.deserializer", classOf[org.apache.kafka.common.serialization.StringDeserializer])
   properties.put("value.deserializer", classOf[org.apache.kafka.common.serialization.StringDeserializer])
 
