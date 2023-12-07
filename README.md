@@ -77,3 +77,16 @@ HOMEWORK: try few examples with foldLeft
 
 13. LESSON THIRTEEN: Spark
 - Big Data
+
+14. LESSON FOURTEEN: Cats
+- Cats library
+- show Properties Engine Spring
+
+15. LESSON FIFTEEN: Kafka
+- play-scala-kafka project
+- Kafka topology
+- bitnami/kafka docker-compose
+HOMEWORK: add kafka consumer to shopping-cart web
+
+16. LESSON SIXTEEN: Machine Learning
+- 
