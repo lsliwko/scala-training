@@ -62,7 +62,7 @@ def append_logs(log_dataframe, log_filename, func_log_line):
 # create dataframe with columns: timestamp, level, message
 df = pd.DataFrame({'timestamp': [], 'level': [], 'message': []})
 
-for log_file in glob.glob('logs/*.log'):
+for log_file in glob.glob('logs-parse/*.log'):
     append_logs(df, log_file, log_line_slf4j)
 
 df \
