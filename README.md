@@ -88,5 +88,8 @@ HOMEWORK: try few examples with foldLeft
 - bitnami/kafka docker-compose
 HOMEWORK: add kafka consumer to shopping-cart web
 
-16. LESSON SIXTEEN: Machine Learning
+16. LESSON SIXTEEN: Python Pandas
+- 
+
+17. LESSON SIXTEEN: Machine Learning
 - 
