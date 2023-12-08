@@ -2,11 +2,12 @@ import glob
 import pandas as pd
 from datetime import datetime
 
-
 # install pandas:
 # brew install python
 # pip3 install pandas
 # pip3 install openpyxl
+
+# NOTE: Execute from terminal in IntelliJ to use virtual environment
 
 
 # {
