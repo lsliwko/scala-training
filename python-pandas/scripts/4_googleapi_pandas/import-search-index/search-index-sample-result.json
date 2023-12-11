@@ -1,0 +1,36 @@
+{
+  "status": {
+    "rid": "yvbMtIcxCwrUFQ8=",
+    "time-ms": 4
+  },
+  "hits": {
+    "found": 2,
+    "start": 0,
+    "hit": [
+      {
+        "id": "c01",
+        "fields": {
+          "name": "The Twelve Pins",
+          "location": "51.5647996,-0.2384464",
+          "description": "Pub named after an Irish mountain range with outdoor benches and numerous sports on big screens.",
+          "keywords": [
+            "beer",
+            "vodka"
+          ]
+        }
+      },
+      {
+        "id": "c02",
+        "fields": {
+          "name": "The Pint Glass Company",
+          "location": "51.6803458,0.4100696",
+          "description": "Pub named after an Irish mountain range with outdoor benches and numerous sports on big screens.",
+          "keywords": [
+            "juice",
+            "vodka"
+          ]
+        }
+      }
+    ]
+  }
+}

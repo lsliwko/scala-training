@@ -1,0 +1,716 @@
+[
+    {
+        "id": "t01",
+        "type": "delete"
+    },
+    {
+        "id": "c01",
+        "type": "add",
+        "fields": {
+            "name": "The Twelve Pins",
+            "description": "Pub named after an Irish mountain range with outdoor benches and numerous sports on big screens.",
+            "location": "51.5647996,-0.2384464",
+            "address": "263 Seven Sisters Rd, Finsbury Park, London N4 2DE",
+            "keywords": [
+                "beer",
+                "vodka"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 1.0,
+            "price": 1.4,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c02",
+        "type": "add",
+        "fields": {
+            "name": "The Pint Glass Company",
+            "description": "Pub named after an Irish mountain range with outdoor benches and numerous sports on big screens.",
+            "location": "51.6803458,0.4100696",
+            "address": "The Timber Mill the Tye, 2, Croftons, East Hanningfield, Chelmsford CM3 8BY",
+            "keywords": [
+                "juice",
+                "vodka"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 2.4,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c03",
+        "type": "add",
+        "fields": {
+            "name": "The Dovetail",
+            "description": "Bar with more than 2000 types of beer, brewery memorabilia & live music on Thursday evenings.",
+            "location": "51.5084254,-0.1272634",
+            "address": "9-10 Jerusalem Passage, London EC1V 4JP",
+            "keywords": [
+                "juice"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.8,
+            "price": 1.1,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c04",
+        "type": "add",
+        "fields": {
+            "name": "Swift Shoreditch",
+            "description": "Upmarket bar serving up craft cocktails, beer & wine, plus waffles, finger foods & other treats.",
+            "location": "51.5258354,-0.0860262",
+            "address": "91-93 Great Eastern St, London EC2A 3HZ",
+            "keywords": [
+                "cocktail",
+                "beer",
+                "wines",
+                "waffles",
+                "finger foods"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.7,
+            "price": 1.4,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c05",
+        "type": "add",
+        "fields": {
+            "name": "Be At One - Shoreditch",
+            "description": "Lively chain bar that serves sweet, sour and spicy cocktails, and offers mixing masterclasses.",
+            "location": "51.5267426,-0.0834445",
+            "address": "348 Old St, London EC1V 9NQ",
+            "keywords": [
+                "sweet",
+                "sour",
+                "spicy",
+                "cocktsils",
+                "mixes"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c06",
+        "type": "add",
+        "fields": {
+            "name": "Nikkis Bar Shoreditch",
+            "description": "Patrons drink cocktails & beer & dance to 80s music in this striking party destination.",
+            "location": "51.5273976,-0.0828584",
+            "address": "39A Hoxton Square, London N1 6NL",
+            "keywords": [
+                "cocktails",
+                "beer",
+                "dance",
+                "80s",
+                "music"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 1.1,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c09",
+        "type": "add",
+        "fields": {
+            "name": "Flight Club Shoreditch",
+            "description": "Cool darts bar with automatic score-keeping system, plus sharing boards, cocktails and shots menu.",
+            "location": "51.5219839,-0.0891145",
+            "address": "2A Worship St, London EC2A 2AH",
+            "keywords": [
+                "darts",
+                "cocktails",
+                "shots",
+                "beer"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.5,
+            "price": 1.1,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c10",
+        "type": "add",
+        "fields": {
+            "name": "Ballie Ballerson London",
+            "description": "Guests frolic in pits filled with plastic balls at this nightspot serving retro cocktails.",
+            "location": "51.5256892,-0.0830332",
+            "address": "97-113 Curtain Rd, London EC2A 3BS",
+            "keywords": [
+                "ball pit",
+                "cocktails",
+                "beer",
+                "rap",
+                "hip hop"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.5,
+            "price": 1.4,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c11",
+        "type": "add",
+        "fields": {
+            "name": "Simmons Bar | Soho",
+            "description": "Cocktail bar with retro wallpaper serving shareable drinks, beer & wine, with a long happy hour.",
+            "location": "51.5257054,-0.090758",
+            "address": "2 Bateman St, London W1D 4AE",
+            "keywords": [
+                "cocktails",
+                "beer",
+                "dance",
+                "80s",
+                "shareable drinks",
+                "wines",
+                "long happy hour",
+                "retro wallopaper"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c12",
+        "type": "add",
+        "fields": {
+            "name": "Cahoots London",
+            "description": "Afternoon tea & cocktails served in a vintage-style speakeasy set in a disused underground station.",
+            "location": "51.5124857,-0.1411245",
+            "address": "13 Kingly Ct, Carnaby, London W1B 5PW",
+            "keywords": [
+                "afternoon tea",
+                "cocktails",
+                "wines",
+                "dine-in",
+                "speakeasy",
+                "underground station",
+                "takeaway"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 1.1,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c13",
+        "type": "add",
+        "fields": {
+            "name": "Henson's Bar and Social",
+            "description": "Sophisticated hotel bar offering an extensive range of cocktails, plus cheese boards & charcuterie.",
+            "location": "51.5140362,-0.13464",
+            "address": "57 Frith St, London W1D 3JG",
+            "keywords": [
+                "hotel bar",
+                "cocktails",
+                "cheeseboard",
+                "charcuterie",
+                "dine-in"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 1.4,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c14",
+        "type": "add",
+        "fields": {
+            "name": "The Vault",
+            "description": "Chic bar hidden away behind a bookcase and offering a refined environment for classic cocktails.",
+            "location": "51.5140644,-0.1526646",
+            "address": "27 Poultry, London EC2R 8AJ",
+            "keywords": [
+                "chic bar",
+                "bookcase",
+                "cocktails",
+                "wines"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c15",
+        "type": "add",
+        "fields": {
+            "name": "Swift Soho",
+            "description": "Lively bar with mirrored walls & leather booths offering unique cocktails & expansive whisky list.",
+            "location": "51.5137846,-0.1326225",
+            "address": "12 Old Compton St, London W1D 4TQ",
+            "keywords": [
+                "mirrored walls",
+                "leather booths",
+                "cocktails",
+                "whiskey"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 1.1,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c16",
+        "type": "add",
+        "fields": {
+            "name": "Bar Am\u00e9ricain",
+            "description": "Intimate bar with a classic cocktail menu, set in elegant lounge with original art deco fittings.",
+            "location": "51.5106089,-0.1381701",
+            "address": "20 Sherwood St, London W1F 7ED",
+            "keywords": [
+                "bar",
+                "cocktails",
+                "lounge",
+                "art decorations"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.5,
+            "price": 1.4,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c17",
+        "type": "add",
+        "fields": {
+            "name": "Bar Termini",
+            "description": "Espresso and cocktail bar with banquettes and bare brick, for coffees, charcuterie and negronis.",
+            "location": "51.5136828,-0.1323766",
+            "address": "7 Old Compton St, London W1D 5JE",
+            "keywords": [
+                "espresso",
+                "cocktails",
+                "bars",
+                "banquettes",
+                "brickwork",
+                "coffee",
+                "negronis",
+                "charcuterie"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c18",
+        "type": "add",
+        "fields": {
+            "name": "Milroy's of Soho",
+            "description": "Compact shop specialising in single and rare malt whiskies, fine wines and champagnes.",
+            "location": "51.5148255,-0.1337555",
+            "address": "3 Greek St, London W1D 4NX",
+            "keywords": [
+                "single malt",
+                "whiskey",
+                "rare whiskey",
+                "wines",
+                "champagne"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.7,
+            "price": 1.1,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c19",
+        "type": "add",
+        "fields": {
+            "name": "Simmons Bar | Oxford Street",
+            "description": "eople like me because I look really good and sell nice drinks.I have a notoriously eclectic musical taste; ranging from disco to funk to 80's to hip-hop. Sign up to be the first to know about our launch parties... with free bars, live DJs",
+            "location": "51.5156815,-0.1384971",
+            "address": "203 Wardour St, London W1F 8ZH",
+            "keywords": [
+                "drinks",
+                "80s",
+                "hip hop",
+                "disco",
+                "funk",
+                "free bars",
+                "private hire",
+                "launch parties",
+                "live djs",
+                "dine-in",
+                "kerbside pickup"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.7,
+            "price": 1.4,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c21",
+        "type": "add",
+        "fields": {
+            "name": "1901 Wine Lounge",
+            "description": "Chic tavern in the lavish Andaz Hotel, offering fine wine, beer & cocktails, plus snacks & coffee.",
+            "location": "51.5171653,-0.0836429",
+            "address": "40 Liverpool St, London EC2M 7QN",
+            "keywords": [
+                "tavern",
+                "hotel",
+                "wines",
+                "beer",
+                "cocktails",
+                "snacks",
+                "coffee"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.5,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c22",
+        "type": "add",
+        "fields": {
+            "name": "BloomsYard - 100 Liverpool St",
+            "description": "empting collection of sweet and savoury delights that you can enjoy, in or out, day or night. Sourdough crumpets & jam, the best carrot cake and pastries or be tempted by an impressive selection of \u2018picky things' such as sliced meats, gorgeous cheeses, juicy olives, capsicums & capers, fresh bread",
+            "location": "51.5181215,-0.0859647",
+            "address": "Level 2, 100 Liverpool St, London EC2M 2AT",
+            "keywords": [
+                "espresso",
+                "snack",
+                "savoury",
+                "delight",
+                "sourdough crumpets",
+                "jam",
+                "carrot cake",
+                "pastry",
+                "sliced meat",
+                "cheese",
+                "olive",
+                "capsicums",
+                "capers fresh bread"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.9,
+            "price": 1.4,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c23",
+        "type": "add",
+        "fields": {
+            "name": "Humble Grape Liverpool Street",
+            "description": "our small but mighty London wine bar in Liverpool Street combines modern fittings with original brickwork, a relaxed atmosphere and a range of over 400 artisan wines",
+            "location": "51.5169357,-0.0828001",
+            "address": "8 Devonshire Row, London EC2M 4RH",
+            "keywords": [
+                "bar",
+                "brickwork",
+                "wines"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.7,
+            "price": 1.1,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c24",
+        "type": "add",
+        "fields": {
+            "name": "Cl\u00e9mence Bar",
+            "description": "new Cocktail & Champagne bar appropriate for just about any occasion with an old-school Parisian-themed interior. Immerse yourself in the understated elegance of Clemence\u2019s soft and chic interiors, tasteful tunes, and exquisite French-inspired menu.",
+            "location": "51.5066758,-9.375487",
+            "address": "46-48 Shepherd Market, London W1J 7QS",
+            "keywords": [
+                "cocktails",
+                "champagne",
+                "parisian",
+                "french",
+                "sparkling wine",
+                "cheese",
+                "charcuterie",
+                "shared platter",
+                "italy",
+                "france",
+                "switzerland"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.8,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c25",
+        "type": "add",
+        "fields": {
+            "name": "Loading Bar",
+            "description": "New and vintage board and computer games, plus live DJs in funky bar with LP covers on the walls.",
+            "location": "51.4748367,-0.6464713",
+            "address": "129 Stoke Newington High St, London N16 0PH",
+            "keywords": [
+                "vintage board",
+                "computer games",
+                "live dj",
+                "funk"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c27",
+        "type": "add",
+        "fields": {
+            "name": "Nightjar",
+            "description": "Speakeasy-style subterranean bar with live jazz and blues, for cocktails and rare spirits.",
+            "location": "51.5196822,-0.1632768",
+            "address": "129 City Rd, London EC1V 1JB",
+            "keywords": [
+                "speakeasy",
+                "subterranean bar",
+                "jazz",
+                "blues",
+                "coctails",
+                "spirits"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    },
+    {
+        "id": "c28",
+        "type": "add",
+        "fields": {
+            "name": "Lyaness",
+            "description": "Swanky cocktail bar with a marble bar and river views, in a hotel setting.",
+            "location": "51.5083972,-0.1092388",
+            "address": "20 Upper Ground, London SE1 9PD",
+            "keywords": [
+                "swanky",
+                "cocktails",
+                "marble bar",
+                "river views",
+                "hotel"
+            ],
+            "image_main": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg",
+            "rating": 4.6,
+            "price": 4.2,
+            "opening_hours": [
+                "10:00-12:00,14:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "10:00-20:00",
+                "closed",
+                "closed"
+            ]
+        }
+    }
+]
