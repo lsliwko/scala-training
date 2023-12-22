@@ -27,6 +27,8 @@ async def my_tasks():
     task1 = asyncio.create_task(my_coroutine("task-b"))
     task2 = asyncio.create_task(my_coroutine("task-c"))
 
+    # task2.cancel()
+
     await task1
     await task2
 
@@ -43,7 +45,9 @@ async def my_tasks_group():
             task_group.create_task(my_coroutine("grouped-task-f"))
             task_group.create_task(my_coroutine("grouped-task-g"))  # , raise_exception=True))
             task_group.create_task(my_coroutine("grouped-task-h"))
+            # task_group._abort() unofficial way of cancelling task group
 
+        # upon exiting scope, task group will wait till all tasks are completed
         print('All tasks done')  # wait for all tasks to complete
 
         # except* let's selectively handle only the exceptions in the group that match a certain type (here: Exception)
