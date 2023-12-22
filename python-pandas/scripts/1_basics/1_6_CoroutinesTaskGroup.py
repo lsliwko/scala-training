@@ -2,6 +2,12 @@ import asyncio
 
 
 # https://docs.python.org/3/library/asyncio-task.html#coroutines
+# https://stackoverflow.com/questions/34753401/difference-between-coroutine-and-future-task-in-python-3-5
+
+# A coroutine is a generator function that can both yield values and accept values from the outside. The benefit of
+# using a coroutine is that we can pause the execution of a function and resume it later. In case of a network
+# operation, it makes sense to pause the execution of a function while we're waiting for the response. We can use the
+# time to run some other functions.
 
 class MyException(Exception):
     pass
