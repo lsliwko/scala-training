@@ -20,6 +20,13 @@ class MyUser:
         return f'hello world private. my name is {self.name} and my age is {self.age}'
 
 
+# inheritance
+class MyBetterUser(MyUser):
+
+    def function_public(self):
+        return f'better hello world public. my name is {self.name} and my age is {self.age}'
+
+
 myUser1 = MyUser("Les1", 25)
 myUser2 = MyUser("Les2", 40)
 
