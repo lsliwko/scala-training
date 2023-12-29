@@ -1,5 +1,9 @@
 from collections import defaultdict
 
+# !!! READ ABOUT IMPORT STRUCTURES !!!
+# https://docs.python.org/3/reference/import.html
+# https://stackoverflow.com/questions/9439480/from-import-vs-import
+
 # Link:
 # https://thomas-cokelaer.info/tutorials/python/data_structures.html
 
