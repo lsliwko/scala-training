@@ -40,3 +40,45 @@ try:
 except IOError as io_error:
     error = f"File read exception {repr(io_error)}"
     raise Exception(error)
+
+
+def error_method():
+    # ExceptionGroup discussion: https://peps.python.org/pep-0654/
+    raise ExceptionGroup(
+        'group name 1',
+        [
+            OSError(1),
+            SystemError(2),
+            ExceptionGroup(
+                'group name 2',
+                [
+                    OSError(3)
+                ]
+            )
+        ]
+    )
+
+
+def flatten_exceptions_groups(exception):
+    exceptions_list = []
+
+    def flatten_exceptions_inner(exceptions):
+        for exception_temp in exceptions:
+            if isinstance(exception_temp, ExceptionGroup):
+                flatten_exceptions_inner(exception_temp.exceptions)
+            else:
+                exceptions_list.append(exception_temp)
+
+    flatten_exceptions_inner(exception)
+    return exceptions_list
+
+# BaseException is the common base class of all exceptions. One of its subclasses, Exception , is the base class of all
+# the non-fatal exceptions. Exceptions which are not subclasses of Exception are not typically handled, because they are
+# used to indicate that the program should terminate.
+
+try:
+    error_method()
+except* OSError as e:
+    print(f"There were OSErrors: {flatten_exceptions_groups(e.exceptions)}")
+except* SystemError as e:
+    print(f"There were SystemErrors: {flatten_exceptions_groups(e.exceptions)}")

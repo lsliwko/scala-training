@@ -61,5 +61,11 @@ def multiple_results_function():
 
 
 (valueOne, valueTwo, valueThree) = multiple_results_function()
-
 print(f'Values are {valueOne}, {valueTwo} and {valueThree}')
+
+
+# string operations
+string_test = 'abcdefghijiklmnopqrst'
+print(f'{string_test.upper()}')  # capitalise
+print(f'{string_test[:10]}')  # first 10 characters
+print(f'{string_test[5:]}')  # all characters after 5th
