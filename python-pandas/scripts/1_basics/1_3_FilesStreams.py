@@ -48,6 +48,7 @@ def error_method():
         'group name 1',
         [
             OSError(1),
+            OSError(2),
             SystemError(2),
             ExceptionGroup(
                 'group name 2',
@@ -59,26 +60,29 @@ def error_method():
     )
 
 
-def flatten_exceptions_groups(exception):
+# BaseException is the common base class of all exceptions. One of its subclasses, Exception , is the base class of all
+# the non-fatal exceptions. Exceptions which are not subclasses of Exception are not typically handled, because they are
+# used to indicate that the program should terminate.
+def flatten_exceptions(exception: BaseException):
     exceptions_list = []
 
     def flatten_exceptions_inner(exceptions):
-        for exception_temp in exceptions:
-            if isinstance(exception_temp, ExceptionGroup):
-                flatten_exceptions_inner(exception_temp.exceptions)
-            else:
-                exceptions_list.append(exception_temp)
+        if hasattr(exceptions, '__iter__'):  # check if object is iterable
+            for exception_temp in exceptions:
+                if isinstance(exception_temp, ExceptionGroup):
+                    flatten_exceptions_inner(exception_temp.exceptions)  # recursion
+                else:
+                    exceptions_list.append(exception_temp)
+        else:
+            exceptions_list.append(exceptions)
 
     flatten_exceptions_inner(exception)
     return exceptions_list
 
-# BaseException is the common base class of all exceptions. One of its subclasses, Exception , is the base class of all
-# the non-fatal exceptions. Exceptions which are not subclasses of Exception are not typically handled, because they are
-# used to indicate that the program should terminate.
 
 try:
     error_method()
 except* OSError as e:
-    print(f"There were OSErrors: {flatten_exceptions_groups(e.exceptions)}")
+    print(f"There were OSErrors: {flatten_exceptions(e.exceptions)}")
 except* SystemError as e:
-    print(f"There were SystemErrors: {flatten_exceptions_groups(e.exceptions)}")
+    print(f"There were SystemErrors: {flatten_exceptions(e.exceptions)}")
