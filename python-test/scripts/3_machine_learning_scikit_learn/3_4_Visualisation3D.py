@@ -8,23 +8,23 @@ print(f'Columns: {data_dict.feature_names[:2]}')
 
 # https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html
 
+# https://stackoverflow.com/questions/1985856/how-to-make-a-3d-scatter-plot
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
 
-# https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html
-fig, ax = plt.subplots()
-
-# create scatter 2D image, column 0 and 1
 scatter = ax.scatter(
-    x=data_dict.data[:, 0],
-    y=data_dict.data[:, 1],
-    c=data_dict.target
+    xs=data_dict.data[:, 0],  # sequence containing x values
+    ys=data_dict.data[:, 1],  # sequence containing y values
+    zs=data_dict.data[:, 2],  # sequence containing z values
+    c=data_dict.target  # sequence containing colors index
 )
 
 ax.set(
     xlabel=data_dict.feature_names[0],
-    ylabel=data_dict.feature_names[1]
+    ylabel=data_dict.feature_names[1],
+    zlabel=data_dict.feature_names[2]
 )
 
-# ax.legend([line1, line2, line3], ['label1', 'label2', 'label3'])
 ax.legend(
     scatter.legend_elements()[0],
     data_dict.target_names,
@@ -34,5 +34,4 @@ ax.legend(
 
 ax.grid(True)
 
-
-plt.show(block=True)
+plt.show()
