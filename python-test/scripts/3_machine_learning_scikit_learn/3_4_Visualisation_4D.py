@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # pip3 install matplotlib
 
 data_dict = datasets.load_iris()
-print(f'Columns: {data_dict.feature_names[:2]}')
+print(f'Columns: {data_dict.feature_names[:3]}')
 
 # https://stackoverflow.com/questions/1985856/how-to-make-a-3d-scatter-plot
 fig = plt.figure()
@@ -14,7 +14,8 @@ scatter = ax.scatter(
     xs=data_dict.data[:, 0],  # sequence containing x values
     ys=data_dict.data[:, 1],  # sequence containing y values
     zs=data_dict.data[:, 2],  # sequence containing z values
-    c=data_dict.target  # sequence containing colors index
+    c=data_dict.data[:, 3],  # sequence containing color values
+    cmap=plt.hot()
 )
 
 ax.set(
@@ -23,12 +24,8 @@ ax.set(
     zlabel=data_dict.feature_names[2]
 )
 
-ax.legend(
-    scatter.legend_elements()[0],
-    data_dict.target_names,
-    # loc="lower right",
-    # title="Targets"
-)
+colorbar = fig.colorbar(scatter)
+colorbar.set_label(data_dict.feature_names[3], rotation=270)
 
 ax.grid(True)
 
