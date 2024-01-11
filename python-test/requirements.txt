@@ -1,5 +1,6 @@
 googlemaps>=4.10.0
 humanize>=4.9.0
+matplotlib>=3.8.2
 numpy>=1.26.3
 opencv_python>=4.9.0.80
 pandas>=2.1.4
