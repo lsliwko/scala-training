@@ -14,9 +14,9 @@ fig, ax = plt.subplots()
 
 # create scatter 2D image, column 0 and 1
 scatter = ax.scatter(
-    x=data_dict.data[:, 0],
-    y=data_dict.data[:, 1],
-    c=data_dict.target
+    x=data_dict.data[:, 0],  # sequence containing x values
+    y=data_dict.data[:, 1],  # sequence containing y values
+    c=data_dict.target  # sequence containing colors index
 )
 
 ax.set(
@@ -27,12 +27,9 @@ ax.set(
 # ax.legend([line1, line2, line3], ['label1', 'label2', 'label3'])
 ax.legend(
     scatter.legend_elements()[0],
-    data_dict.target_names,
-    # loc="lower right",
-    # title="Targets"
+    data_dict.target_names
 )
 
 ax.grid(True)
-
 
 plt.show(block=True)

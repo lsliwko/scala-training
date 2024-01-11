@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 data_dict = datasets.load_iris()
 print(f'Columns: {data_dict.feature_names[:2]}')
 
-# https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html
-
 # https://stackoverflow.com/questions/1985856/how-to-make-a-3d-scatter-plot
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
