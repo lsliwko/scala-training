@@ -15,7 +15,7 @@ scatter = ax.scatter(   # scatter3D(
     ys=data_dict.data[:, 1],  # sequence containing y values
     zs=data_dict.data[:, 2],  # sequence containing z values
     c=data_dict.data[:, 3],  # sequence containing color values
-    cmap=plt.hot()
+    cmap=plt.hot(),
 )
 
 ax.set(
