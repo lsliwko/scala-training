@@ -45,3 +45,10 @@ print(plus_five_function(5))
 
 multiply_function = lambda arg1, arg2: arg1 * arg2
 print(multiply_function(5, 6))
+
+
+def multiply_function2(arg1: int, arg2: int) -> int:
+    return arg1 * arg2
+
+
+print(multiply_function2(5, 6))
