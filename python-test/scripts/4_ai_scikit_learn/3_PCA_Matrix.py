@@ -1,6 +1,8 @@
 import plotly.express as px
 from sklearn import decomposition
 
+# https://plotly.com/python/pca-visualization/
+
 df = px.data.iris()
 features = ["sepal_width", "sepal_length", "petal_width", "petal_length"]
 
