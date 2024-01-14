@@ -8,9 +8,10 @@ print(f'Columns: {data_dict.feature_names[:2]}')
 
 # https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html
 
-
 # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html
 fig, ax = plt.subplots()
+
+plt.cla()  # clear current axes
 
 # create scatter 2D image, column 0 and 1
 scatter = ax.scatter(

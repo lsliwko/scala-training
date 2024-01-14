@@ -1,3 +1,8 @@
+import numpy as np
+from sklearn import datasets
+from sklearn.decomposition import PCA
+
+
 # 1) Singular Value Decomposition
 # https://www.youtube.com/playlist?list=PLWhu9osGd2dB9uMG5gKBARmk73oHUUQZS
 
@@ -11,4 +16,12 @@
 
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
+
+data_dict = datasets.load_iris()
+print(f'Columns: {data_dict.feature_names[:2]}')
+
+pca = PCA(n_components=2)
+pca.fit(data_dict.data)
+
+print(pca)
 

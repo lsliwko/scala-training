@@ -10,6 +10,8 @@ print(f'Columns: {data_dict.feature_names[:3]}')
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
+plt.cla()  # clear current axes
+
 scatter = ax.scatter(   # scatter3D(
     xs=data_dict.data[:, 0],  # sequence containing x values
     ys=data_dict.data[:, 1],  # sequence containing y values
