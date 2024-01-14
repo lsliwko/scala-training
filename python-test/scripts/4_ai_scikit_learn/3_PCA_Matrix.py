@@ -1,10 +1,10 @@
 import plotly.express as px
-from sklearn.decomposition import PCA
+from sklearn import decomposition
 
 df = px.data.iris()
 features = ["sepal_width", "sepal_length", "petal_width", "petal_length"]
 
-pca = PCA()
+pca = decomposition.PCA()
 components = pca.fit_transform(df[features])
 labels = {
     str(i): f"PC {i+1} ({var:.1f}%)"
