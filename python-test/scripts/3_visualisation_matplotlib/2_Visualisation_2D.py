@@ -19,6 +19,10 @@ scatter = ax.scatter(
     c=data_dict.target  # sequence containing colors index
 )
 
+# for data_point, target in zip(data_dict.data, data_dict.target):
+#     label = data_dict.target_names[target]
+#     ax.text(data_point[0], data_point[1], label)
+
 ax.set(
     xlabel=data_dict.feature_names[0],
     ylabel=data_dict.feature_names[1]

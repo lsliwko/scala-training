@@ -24,10 +24,10 @@ print(ndarray_test.shape)
 print(ndarray_test.dtype)
 
 # https://stackoverflow.com/questions/39762019/how-to-read-binary-files-in-python-using-numpy
-size_x = 100  # dimensions
-size_y = 100
+size_x = 256  # dimensions
+size_y = 256
 with open('test.bin', 'wb') as file_out:
-    file_out.write(os.urandom(size_x * size_y))
+    file_out.write(os.urandom(size_x * size_y))  # randomise bytes
     print(f'File stored: {file_out.name}')
 
 filearray_test = np.fromfile('test.bin', dtype='uint8')
