@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn import datasets
 from sklearn.decomposition import PCA
-
+import matplotlib.pyplot as plt
 
 # 1) Singular Value Decomposition
 # https://www.youtube.com/playlist?list=PLWhu9osGd2dB9uMG5gKBARmk73oHUUQZS
@@ -16,12 +16,15 @@ from sklearn.decomposition import PCA
 
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
+# https://scikit-learn.org/stable/auto_examples/decomposition/plot_pca_iris.html
 
 data_dict = datasets.load_iris()
-print(f'Columns: {data_dict.feature_names[:2]}')
+print(f'Columns: {data_dict.feature_names}')
 
-pca = PCA(n_components=2)
+pca = PCA(n_components=3)  # number of PC1, PC2, PC3, ...
 pca.fit(data_dict.data)
 
-print(pca)
+pca_data_points = pca.transform(data_dict.data)  # apply reduction
+
+print(pca_data_points)
 
