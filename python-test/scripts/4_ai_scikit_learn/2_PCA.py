@@ -26,5 +26,33 @@ pca.fit(data_dict.data)
 
 pca_data_points = pca.transform(data_dict.data)  # apply reduction
 
-print(pca_data_points)
 
+
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+
+plt.cla()  # clear current axes
+
+scatter = ax.scatter(   # scatter3D(
+    xs=data_dict.data[:, 0],  # sequence containing x values
+    ys=data_dict.data[:, 1],  # sequence containing y values
+    zs=data_dict.data[:, 2],  # sequence containing z values
+    c=data_dict.target  # sequence containing colors index
+)
+
+ax.set(
+    xlabel="PC1",
+    ylabel="PC2",
+    zlabel="PC3"
+)
+
+ax.legend(
+    scatter.legend_elements()[0],
+    data_dict.target_names,
+    # loc="lower right",
+    # title="Targets"
+)
+
+ax.grid(True)
+
+plt.show()

@@ -37,4 +37,4 @@ ax.legend(
 
 ax.grid(True)
 
-plt.show(block=True)
+plt.show()
