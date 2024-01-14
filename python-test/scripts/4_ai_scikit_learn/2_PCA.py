@@ -1,7 +1,5 @@
-import numpy as np
-from sklearn import datasets
-from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+from sklearn import datasets, decomposition
 
 # 1) Singular Value Decomposition
 # https://www.youtube.com/playlist?list=PLWhu9osGd2dB9uMG5gKBARmk73oHUUQZS
@@ -19,40 +17,51 @@ import matplotlib.pyplot as plt
 # https://scikit-learn.org/stable/auto_examples/decomposition/plot_pca_iris.html
 
 data_dict = datasets.load_iris()
-print(f'Columns: {data_dict.feature_names}')
-
-pca = PCA(n_components=3)  # number of PC1, PC2, PC3, ...
-pca.fit(data_dict.data)
-
-pca_data_points = pca.transform(data_dict.data)  # apply reduction
+print(f'Columns: {data_dict.feature_names[:3]}')
 
 
+# https://stackoverflow.com/questions/1985856/how-to-make-a-3d-scatter-plot
+fig1 = plt.figure()
+ax1 = fig1.add_subplot(projection='3d')
 
-fig = plt.figure()
-ax = fig.add_subplot(projection='3d')
-
-plt.cla()  # clear current axes
-
-scatter = ax.scatter(   # scatter3D(
+scatter1 = ax1.scatter(  # scatter3D(
     xs=data_dict.data[:, 0],  # sequence containing x values
     ys=data_dict.data[:, 1],  # sequence containing y values
     zs=data_dict.data[:, 2],  # sequence containing z values
-    c=data_dict.target  # sequence containing colors index
+    c=data_dict.data[:, 3],  # sequence containing color values
+    cmap=plt.hot()
 )
 
-ax.set(
-    xlabel="PC1",
-    ylabel="PC2",
-    zlabel="PC3"
+ax1.set(
+    xlabel=data_dict.feature_names[0],
+    ylabel=data_dict.feature_names[1],
+    zlabel=data_dict.feature_names[2]
 )
 
-ax.legend(
-    scatter.legend_elements()[0],
-    data_dict.target_names,
-    # loc="lower right",
-    # title="Targets"
+
+# -----
+
+
+fig2 = plt.figure()
+ax2 = fig2.add_subplot(projection="3d")
+
+pca = decomposition.PCA(n_components=3)
+pca.fit(data_dict.data)
+pca_data_points = pca.transform(data_dict.data)
+
+# Reorder the labels to have colors matching the cluster results
+ax2.scatter(
+    xs=pca_data_points[:, 0],
+    ys=pca_data_points[:, 1],
+    zs=pca_data_points[:, 2],
+    c=data_dict.target
 )
 
-ax.grid(True)
+
+ax2.set(
+    xlabel=f"PC1 ({pca.explained_variance_ratio_[0] * 100:.2f}%)",
+    ylabel=f"PC2 ({pca.explained_variance_ratio_[1] * 100:.2f}%)",
+    zlabel=f"PC3 ({pca.explained_variance_ratio_[2] * 100:.2f}%)"
+)
 
 plt.show()
