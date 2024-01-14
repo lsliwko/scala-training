@@ -14,7 +14,7 @@ scatter1 = ax1.scatter(  # scatter3D(
     ys=data_dict.data[:, 1],  # sequence containing y values
     zs=data_dict.data[:, 2],  # sequence containing z values
     c=data_dict.data[:, 3],  # sequence containing color values
-    cmap=plt.hot(),
+    cmap=plt.hot()
 )
 
 ax1.set(
@@ -22,6 +22,10 @@ ax1.set(
     ylabel=data_dict.feature_names[1],
     zlabel=data_dict.feature_names[2]
 )
+
+
+# -----
+
 
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(projection="3d")
