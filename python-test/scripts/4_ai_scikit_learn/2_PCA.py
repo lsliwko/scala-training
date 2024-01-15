@@ -5,12 +5,13 @@ from sklearn import datasets, decomposition
 # https://www.youtube.com/playlist?list=PLWhu9osGd2dB9uMG5gKBARmk73oHUUQZS
 
 
-# 2) Principal Component Analysis, or PCA, is a dimensionality reduction method that is often used to
-# reduce the dimensionality of large data sets, by transforming a large set of variables into a smaller
-# one that still contains most of the information in the large set.
-
+# 2) Principal Component Analysis
 # https://youtu.be/FgakZw6K1QQ
 # https://youtu.be/HMOI_lkzW08
+
+# Principal Component Analysis, or PCA, is a dimensionality reduction method that is often used to
+# reduce the dimensionality of large data sets, by transforming a large set of variables into a smaller
+# one that still contains most of the information in the large set.
 
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
@@ -18,7 +19,6 @@ from sklearn import datasets, decomposition
 
 data_dict = datasets.load_iris()
 print(f'Columns: {data_dict.feature_names[:3]}')
-
 
 # https://stackoverflow.com/questions/1985856/how-to-make-a-3d-scatter-plot
 fig1 = plt.figure()
@@ -38,7 +38,6 @@ ax1.set(
     zlabel=data_dict.feature_names[2]
 )
 
-
 # -----
 
 
@@ -56,7 +55,6 @@ ax2.scatter(
     zs=pca_data_points[:, 2],
     c=data_dict.target
 )
-
 
 ax2.set(
     xlabel=f"PC1 ({pca.explained_variance_ratio_[0] * 100:.2f}%)",
