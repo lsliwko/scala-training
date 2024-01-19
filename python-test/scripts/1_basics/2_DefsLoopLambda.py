@@ -39,7 +39,7 @@ print(even_list)
 even_list_2 = [x for x in list_sample if x % 2 == 0]
 print(even_list_2)
 
-# A lambda function is a small anonymous function
+# a lambda function is a small anonymous function
 plus_five_function = lambda arg: arg + 10
 print(plus_five_function(5))
 
@@ -52,3 +52,13 @@ def multiply_function2(arg1: int, arg2: int) -> int:
 
 
 print(multiply_function2(5, 6))
+
+# dictionary comprehension
+list_sample = [1, 2, "a"]
+dict_sample = {
+    f"Item {index+1}": f"Value [{element}]"  # key : value
+    for index, element in enumerate(list_sample)
+}
+
+print(dict_sample)
+
