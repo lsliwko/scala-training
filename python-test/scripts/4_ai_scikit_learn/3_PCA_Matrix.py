@@ -2,7 +2,8 @@ import plotly.express as px
 from sklearn import decomposition
 
 # needed to run on windows
-import PyQt5.QtCore
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 
 # https://plotly.com/python/pca-visualization/
 

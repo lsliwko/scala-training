@@ -2,7 +2,8 @@ from sklearn import datasets
 import matplotlib.pyplot as plt
 
 # needed to run on windows
-import PyQt5.QtCore
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 
 # pip3 install matplotlib
 
