@@ -1,6 +1,9 @@
 from sklearn import datasets
 import matplotlib.pyplot as plt
 
+# needed to run on windows
+import PyQt5.QtCore
+
 # pip3 install matplotlib
 
 data_dict = datasets.load_iris()

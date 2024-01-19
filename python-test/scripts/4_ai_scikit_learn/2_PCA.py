@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 from sklearn import datasets, decomposition
 
+# needed to run on windows
+import PyQt5.QtCore
+
 # 1) Singular Value Decomposition
 # https://www.youtube.com/playlist?list=PLWhu9osGd2dB9uMG5gKBARmk73oHUUQZS
 

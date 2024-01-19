@@ -1,6 +1,9 @@
 import plotly.express as px
 from sklearn import decomposition
 
+# needed to run on windows
+import PyQt5.QtCore
+
 # https://plotly.com/python/pca-visualization/
 
 df = px.data.iris()
