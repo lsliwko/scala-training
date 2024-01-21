@@ -21,18 +21,10 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Keeping 4 of 20 categories only
-categories = [
-    "alt.atheism",
-    "talk.religion.misc",
-    "sci.electronics",
-    "sci.space",
-]
-
 # importing train and test data
 news_data = fetch_20newsgroups(
     subset="test",
-    categories=categories,
+    categories=["sci.electronics", "sci.space"],
     shuffle=False,
     random_state=4,
     remove=("headers", "footers", "quotes"),
@@ -54,6 +46,7 @@ y = news_data.target
 
 feature_names = vectorizer.get_feature_names_out()
 print(f'Feature names: {feature_names}')
+print(f'{X.shape}')
 
 
 
