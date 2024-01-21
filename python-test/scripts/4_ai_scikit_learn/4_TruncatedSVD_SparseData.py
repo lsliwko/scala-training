@@ -38,10 +38,14 @@ vectorizer = TfidfVectorizer(
     sublinear_tf=True,
     lowercase=True,
     decode_error="ignore",
-    max_df=0.5,  # ignore words that have a document frequency strictly higher than the given threshold
-    min_df=5,  # ignore words that have a document frequency strictly lower than the given threshold.
+    max_df=0.5,  # ignore words that have a document frequency higher than the given threshold
+    min_df=5,  # ignore words that have a document frequency lower than the given threshold.
     stop_words="english",
+    token_pattern=u'(?ui)\\b\\w*[a-z]+\\w*\\b'  # must contain letter, no numbers
 )
+
+# alternative to token_patter to remove numbers:
+# https://scikit-learn.org/stable/auto_examples/bicluster/plot_bicluster_newsgroups.html
 
 X = vectorizer.fit_transform(news_data.data)
 y = news_data.target
