@@ -31,10 +31,6 @@ news_data = fetch_20newsgroups(
 )
 
 
-def number_normalizer(tokens):
-    return ("#NUMBER" if token[0].isdigit() else token for token in tokens)
-
-
 # https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
 # initialize vectorizer - keeping the
 # range of document frequency [0.5,5]
@@ -48,20 +44,34 @@ vectorizer = TfidfVectorizer(
     token_pattern=u'(?ui)\\b\\w*[a-z]+\\w*\\b'  # must contain at least one letter, no numbers
 )
 
+# TODO disallow single-character words
+
 # alternative to token_patter to remove numbers:
 # https://scikit-learn.org/stable/auto_examples/bicluster/plot_bicluster_newsgroups.html
 
-X = vectorizer.fit_transform(news_data.data)
+X_vectorized = vectorizer.fit_transform(news_data.data)
 y = news_data.target
 
+# Vectorize and standardize the data
 feature_names = vectorizer.get_feature_names_out()
 print(f'Feature names: {feature_names}')
 
-news_data_file = "newgroup-sparce-data.xlsx"
-print(f"Saving to {news_data_file}: {X.shape}")
-df = pd.DataFrame(columns=feature_names, data=X.toarray())
-df.to_excel("newgroup-sparce-data.xlsx", index=False)
+newsgroup_sparce_data_file = "newgroups-sparce-data.xlsx"
+print(f"Saving to {newsgroup_sparce_data_file}: {X_vectorized.shape}")
+df_sparce = pd.DataFrame(columns=feature_names, data=X_vectorized.toarray())
+df_sparce.to_excel(newsgroup_sparce_data_file, index=False)
 print("Done")
+
+# Create a TruncatedSVD object and fit the data
+truncated_svd = TruncatedSVD(n_components=2)
+X_truncated = truncated_svd.fit_transform(X_vectorized)
+
+newsgroup_truncated_file = "newgroups-truncated.xlsx"
+print(f"Saving to {newsgroup_truncated_file}: {X_vectorized.shape}")
+df_sparce = pd.DataFrame(columns=feature_names, data=X_truncated.toarray())
+df_sparce.to_excel(newsgroup_truncated_file, index=False)
+print("Done")
+
 
 """
 from sklearn.linear_model import LogisticRegression, RidgeClassifier
