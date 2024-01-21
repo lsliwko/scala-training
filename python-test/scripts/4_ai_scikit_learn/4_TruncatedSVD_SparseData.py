@@ -31,6 +31,10 @@ news_data = fetch_20newsgroups(
 )
 
 
+def number_normalizer(tokens):
+    return ("#NUMBER" if token[0].isdigit() else token for token in tokens)
+
+
 # https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
 # initialize vectorizer - keeping the
 # range of document frequency [0.5,5]
@@ -41,7 +45,7 @@ vectorizer = TfidfVectorizer(
     max_df=0.5,  # ignore words that have a document frequency higher than the given threshold
     min_df=5,  # ignore words that have a document frequency lower than the given threshold.
     stop_words="english",
-    token_pattern=u'(?ui)\\b\\w*[a-z]+\\w*\\b'  # must contain letter, no numbers
+    token_pattern=u'(?ui)\\b\\w*[a-z]+\\w*\\b'  # must contain at least one letter, no numbers
 )
 
 # alternative to token_patter to remove numbers:
@@ -53,14 +57,11 @@ y = news_data.target
 feature_names = vectorizer.get_feature_names_out()
 print(f'Feature names: {feature_names}')
 
-news_data_file="newgroup-sparce-data.xlsx"
+news_data_file = "newgroup-sparce-data.xlsx"
 print(f"Saving to {news_data_file}: {X.shape}")
 df = pd.DataFrame(columns=feature_names, data=X.toarray())
 df.to_excel("newgroup-sparce-data.xlsx", index=False)
 print("Done")
-
-
-
 
 """
 from sklearn.linear_model import LogisticRegression, RidgeClassifier
