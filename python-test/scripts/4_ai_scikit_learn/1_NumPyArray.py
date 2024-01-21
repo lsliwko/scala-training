@@ -9,6 +9,9 @@ import os
 # Numpy adds support for large, multidimensional matrices and arrays, along with a gigantic
 # collection of top-end mathematical functions to operate on these arrays and matrices.
 
+# NumPy is thin wrapper over C code:
+# https://stackoverflow.com/questions/1825857/how-much-of-numpy-and-scipy-is-in-c
+
 array_test = np.array([1, 2, 3, 4, 5])
 
 array_test.mean()

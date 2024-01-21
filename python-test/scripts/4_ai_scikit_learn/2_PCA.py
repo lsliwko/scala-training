@@ -5,6 +5,10 @@ from sklearn import datasets, decomposition
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+# Linear regression analysis is used to predict the value of a variable based on the value of another variable.
+# The variable you want to predict is called the dependent variable. The variable you are using to predict the other
+# variable's value is called the independent variable.
+
 # 1) Singular Value Decomposition
 # https://www.youtube.com/playlist?list=PLWhu9osGd2dB9uMG5gKBARmk73oHUUQZS
 
