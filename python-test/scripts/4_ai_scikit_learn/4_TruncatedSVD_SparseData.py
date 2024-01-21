@@ -56,7 +56,7 @@ y = news_data.target
 newsgroup_sparce_data_file = "newgroups-sparce-data.xlsx"
 print(f"Saving to {newsgroup_sparce_data_file}: {X_vectorized.shape}")
 df_sparce = pd.DataFrame(columns=vectorizer.get_feature_names_out(), data=X_vectorized.toarray())
-df_sparce['Target'] = y
+df_sparce['#TARGET'] = y
 df_sparce.to_excel(newsgroup_sparce_data_file, index=False)
 print("Done")
 
@@ -67,7 +67,7 @@ X_truncated = truncated_svd.fit_transform(X_vectorized)
 newsgroup_truncated_file = "newgroups-truncated.xlsx"
 print(f"Saving to {newsgroup_truncated_file}: {X_vectorized.shape}")
 df_sparce = pd.DataFrame(columns=truncated_svd.get_feature_names_out(), data=X_truncated)
-df_sparce['Target'] = y
+df_sparce['#TARGET'] = y
 df_sparce.to_excel(newsgroup_truncated_file, index=False)
 print("Done")
 
