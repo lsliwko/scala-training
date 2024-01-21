@@ -44,17 +44,18 @@ news_data = fetch_20newsgroups(
 # range of document frequency [0.5,5]
 vectorizer = TfidfVectorizer(
     sublinear_tf=True,
-    max_df=0.5,
-    min_df=5,
+    max_df=0.5,  # ignore words that have a document frequency strictly higher than the given threshold
+    min_df=5,  # ignore words that have a document frequency strictly lower than the given threshold.
     stop_words="english"
 )
 
-print()
-X = vectorizer.fit_transform(data_train.data)
-y = data_train.target
+X = vectorizer.fit_transform(news_data.data)
+y = news_data.target
 
 feature_names = vectorizer.get_feature_names_out()
 print(f'Feature names: {feature_names}')
+
+
 
 """
 from sklearn.linear_model import LogisticRegression, RidgeClassifier
