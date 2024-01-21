@@ -56,6 +56,7 @@ y = news_data.target
 newsgroup_sparce_data_file = "newgroups-sparce-data.xlsx"
 print(f"Saving to {newsgroup_sparce_data_file}: {X_vectorized.shape}")
 df_sparce = pd.DataFrame(columns=vectorizer.get_feature_names_out(), data=X_vectorized.toarray())
+df_sparce['Target'] = y
 df_sparce.to_excel(newsgroup_sparce_data_file, index=False)
 print("Done")
 
@@ -66,61 +67,9 @@ X_truncated = truncated_svd.fit_transform(X_vectorized)
 newsgroup_truncated_file = "newgroups-truncated.xlsx"
 print(f"Saving to {newsgroup_truncated_file}: {X_vectorized.shape}")
 df_sparce = pd.DataFrame(columns=truncated_svd.get_feature_names_out(), data=X_truncated)
+df_sparce['Target'] = y
 df_sparce.to_excel(newsgroup_truncated_file, index=False)
 print("Done")
 
-
-"""
-from sklearn.linear_model import LogisticRegression, RidgeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn import metrics
-
-models = {}
-# inverse of regularization strength
-models['LogisticRegression'] = LogisticRegression(C=5, max_iter=1000)
-
-# gradient descent solver for sparse matrix "sparse_cg"
-models['RidgeClassifier'] = RidgeClassifier(alpha=1.0, solver="sparse_cg")
-
-# setting nearest 100 points as 1 label
-models['KNeighborsClassifier'] = KNeighborsClassifier(n_neighbors=100)
-
-"""
-"""
-# transforming the test data into existing train data vectorizer
-X_test = vectorizer.transform(X_test_raw)
-
-# training models and comparing accuracy
-for k, v in models.items():
-    print("\n=========Training model with classifier {0}===========".format(k))
-    v.fit(X_train, y_train)
-    pred = v.predict(X_test)
-    score = metrics.accuracy_score(y_test, pred)
-    print("accuracy after evaluation on test data: {0} %".format(score * 100))
-    
-"""
-"""
-# Load the dataset
-cal_housing = fetch_california_housing(as_frame=True)
-X = cal_housing.data
-y = cal_housing.target
-
-X.to_excel('california-housing.xlsx',index=False)
-
-# Standardize the data
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-
-# Create a TruncatedSVD object and fit the data
-tsvd = TruncatedSVD(n_components=2)
-X_svd = tsvd.fit_transform(X_scaled)
-
-# Create a new DataFrame for the reduced data
-data = pd.DataFrame(X_svd, columns=['SVD Component 1', 'SVD Component 2'])
-data['Target'] = y
-
-# Plot the results
-
-sns.scatterplot(data=data, x='SVD Component 1', y='SVD Component 2', hue='Target')
+sns.scatterplot(data=df_sparce, x='truncatedsvd0', y='truncatedsvd1', hue='Target')
 plt.show()
-"""
