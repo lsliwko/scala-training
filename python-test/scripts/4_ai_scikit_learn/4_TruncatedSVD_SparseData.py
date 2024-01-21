@@ -36,9 +36,11 @@ news_data = fetch_20newsgroups(
 # range of document frequency [0.5,5]
 vectorizer = TfidfVectorizer(
     sublinear_tf=True,
+    lowercase=True,
+    decode_error="ignore",
     max_df=0.5,  # ignore words that have a document frequency strictly higher than the given threshold
     min_df=5,  # ignore words that have a document frequency strictly lower than the given threshold.
-    stop_words="english"
+    stop_words="english",
 )
 
 X = vectorizer.fit_transform(news_data.data)
@@ -46,7 +48,13 @@ y = news_data.target
 
 feature_names = vectorizer.get_feature_names_out()
 print(f'Feature names: {feature_names}')
-print(f'{X.shape}')
+
+news_data_file="newgroup-sparce-data.xlsx"
+print(f"Saving to {news_data_file}: {X.shape}")
+df = pd.DataFrame(columns=feature_names, data=X.toarray())
+df.to_excel("newgroup-sparce-data.xlsx", index=False)
+print("Done")
+
 
 
 
