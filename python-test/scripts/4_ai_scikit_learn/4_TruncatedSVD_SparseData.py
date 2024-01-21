@@ -71,5 +71,5 @@ df_sparce['#TARGET'] = y
 df_sparce.to_excel(newsgroup_truncated_file, index=False)
 print("Done")
 
-sns.scatterplot(data=df_sparce, x='truncatedsvd0', y='truncatedsvd1', hue='Target')
+sns.scatterplot(data=df_sparce, x='truncatedsvd0', y='truncatedsvd1', hue='#TARGET')
 plt.show()
