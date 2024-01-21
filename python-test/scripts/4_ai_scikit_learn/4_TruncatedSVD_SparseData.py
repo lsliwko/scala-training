@@ -65,7 +65,7 @@ truncated_svd = TruncatedSVD(n_components=2)
 X_truncated = truncated_svd.fit_transform(X_vectorized)
 
 newsgroup_truncated_file = "newgroups-truncated.xlsx"
-print(f"Saving to {newsgroup_truncated_file}: {X_vectorized.shape}")
+print(f"Saving to {newsgroup_truncated_file}: {X_truncated.shape}")
 df_sparce = pd.DataFrame(columns=truncated_svd.get_feature_names_out(), data=X_truncated)
 df_sparce['#TARGET'] = y
 df_sparce.to_excel(newsgroup_truncated_file, index=False)
