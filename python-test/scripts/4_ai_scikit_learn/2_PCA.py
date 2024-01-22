@@ -26,7 +26,7 @@ from PyQt5.QtGui import *
 # https://scikit-learn.org/stable/auto_examples/decomposition/plot_pca_iris.html
 
 data_dict = datasets.load_iris()
-print(f'Columns: {data_dict.feature_names[:3]}')
+# print(f'Columns: {data_dict.feature_names[:3]}')
 
 # https://stackoverflow.com/questions/1985856/how-to-make-a-3d-scatter-plot
 fig1 = plt.figure()
