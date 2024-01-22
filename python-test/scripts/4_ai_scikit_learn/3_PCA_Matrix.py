@@ -17,6 +17,10 @@ labels = {
     for i, var in enumerate(pca.explained_variance_ratio_ * 100)
 }
 
+for feature_name, explained_variance_ratio, in zip(pca.get_feature_names_out(), pca.explained_variance_ratio_):
+    print(f"{feature_name}: {100*explained_variance_ratio:.2f}%")
+print(f"Total explained variance: {100*sum(pca.explained_variance_ratio_):.2f}%")
+
 fig = px.scatter_matrix(
     components,
     labels=labels,
