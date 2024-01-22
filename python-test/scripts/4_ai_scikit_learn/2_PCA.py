@@ -54,6 +54,10 @@ ax2 = fig2.add_subplot(projection="3d")
 
 pca = decomposition.PCA(n_components=3)
 pca.fit(data_dict.data)
+for feature_name, explained_variance_ratio, in zip(pca.get_feature_names_out(), pca.explained_variance_ratio_):
+    print(f"{feature_name}: {100*explained_variance_ratio:.2f}%")
+print(f"Total explained variance: {100*sum(pca.explained_variance_ratio_):.2f}%")
+
 pca_data_points = pca.transform(data_dict.data)
 
 # Reorder the labels to have colors matching the cluster results
