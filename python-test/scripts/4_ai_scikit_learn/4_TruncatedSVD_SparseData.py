@@ -13,9 +13,13 @@ import matplotlib.pyplot as plt
 
 # Contrary to PCA, this estimator does not center the data before computing the singular value decomposition.
 # https://dataaspirant.com/truncated-svd/
-
-
+# https://analyticsindiamag.com/beginners-guide-to-truncated-svd-for-dimensionality-reduction/
 # https://www.geeksforgeeks.org/classification-of-text-documents-using-sparse-features-in-python-scikit-learn/
+
+# Some of the examples where sparse data generates are: Recommendation system, Text classification, Bag of words, TF-IDF
+# TF-IDF stands for term frequency-inverse document frequency, and it is a measure, used in the fields of information
+# retrieval (IR) and machine learning, that can quantify the importance or relevance of string representations (words,
+# phrases, lemmas, etc.)  in a document amongst a collection of documents (also known as a corpus).
 
 
 from sklearn.datasets import fetch_20newsgroups
