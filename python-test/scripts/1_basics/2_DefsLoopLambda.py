@@ -35,7 +35,7 @@ for x in list_sample:
 
 print(even_list)
 
-# comprehension
+# for comprehension
 even_list_2 = [x for x in list_sample if x % 2 == 0]
 print(even_list_2)
 

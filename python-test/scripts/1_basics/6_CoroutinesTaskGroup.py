@@ -46,10 +46,10 @@ async def my_tasks_group():
     try:
         async with asyncio.TaskGroup() as task_group:
             # TaskGroup keeps track of all tasks
-            task_group.create_task(my_coroutine("grouped-task-d"))  # , raise_exception=True))
-            task_group.create_task(my_coroutine("grouped-task-e"))  # , raise_exception=True))
+            task_group.create_task(my_coroutine("grouped-task-d", raise_exception=True))
+            task_group.create_task(my_coroutine("grouped-task-e", raise_exception=True))
             task_group.create_task(my_coroutine("grouped-task-f"))
-            task_group.create_task(my_coroutine("grouped-task-g"))  # , raise_exception=True))
+            task_group.create_task(my_coroutine("grouped-task-g", raise_exception=True))
             task_group.create_task(my_coroutine("grouped-task-h"))
             # task_group._abort() unofficial way of cancelling task group
 

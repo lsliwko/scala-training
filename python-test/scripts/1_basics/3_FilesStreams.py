@@ -79,7 +79,7 @@ def flatten_exceptions(exception: BaseException) -> list[BaseException]:
 
 try:
     error_method()
-except* OSError as e:
-    print(f"There were OSErrors: {flatten_exceptions(e)}")
-except* SystemError as e:
-    print(f"There were SystemErrors: {flatten_exceptions(e)}")
+except* OSError as list_exceptions:
+    print(f"There were OSErrors: {flatten_exceptions(list_exceptions)}")
+except* SystemError as list_exceptions:
+    print(f"There were SystemErrors: {flatten_exceptions(list_exceptions)}")

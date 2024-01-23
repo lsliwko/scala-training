@@ -25,9 +25,9 @@ scatter = ax.scatter(   # scatter3D(
 )
 
 
-# for data_point in data_dict.data:
-#   label = str(data_point[:3])
-#    ax.text(data_point[0], data_point[1], data_point[2], label)
+for data_point in data_dict.data:
+    label = str(data_point[:3])
+    ax.text(data_point[0], data_point[1], data_point[2], label)
 
 ax.set(
     xlabel=data_dict.feature_names[0],
