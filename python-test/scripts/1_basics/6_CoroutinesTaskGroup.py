@@ -10,7 +10,7 @@ import asyncio
 # time to run some other functions.
 
 class MyException(Exception):
-    pass
+    pass  # Empty code is not allowed in loops, function definitions, class definitions, or in if statements
 
 
 # coroutine
