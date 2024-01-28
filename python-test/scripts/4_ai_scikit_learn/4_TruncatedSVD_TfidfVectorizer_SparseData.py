@@ -93,3 +93,5 @@ if save_data:
 
 sns.scatterplot(data=df_sparce, x='truncatedsvd0', y='truncatedsvd1', hue='#TARGET')
 plt.show()
+
+# https://github.com/priyagunjate/Word-Vectors-using-Truncated-SVD/blob/master/Assignment11--version1.ipynb
