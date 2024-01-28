@@ -1,5 +1,5 @@
 #!/bin/bash
 
-brew install jupyter
+pip3 install jupyter
 
 jupyter notebook
