@@ -26,6 +26,9 @@ from PyQt5.QtGui import *
 # https://scikit-learn.org/stable/auto_examples/decomposition/plot_pca_iris.html
 
 data_dict = datasets.load_iris()
+X = data_dict.data  # X - independent features (excluding target variable)
+y = data_dict.target  # y - dependent variables, called (target)
+
 # print(f'Columns: {data_dict.feature_names[:3]}')
 
 # https://stackoverflow.com/questions/1985856/how-to-make-a-3d-scatter-plot
@@ -33,10 +36,10 @@ fig1 = plt.figure()
 ax1 = fig1.add_subplot(projection='3d')
 
 scatter1 = ax1.scatter(  # scatter3D(
-    xs=data_dict.data[:, 0],  # sequence containing x values
-    ys=data_dict.data[:, 1],  # sequence containing y values
-    zs=data_dict.data[:, 2],  # sequence containing z values
-    c=data_dict.data[:, 3],  # sequence containing color values
+    xs=X[:, 0],  # sequence containing x values
+    ys=X[:, 1],  # sequence containing y values
+    zs=X[:, 2],  # sequence containing z values
+    c=X[:, 3],  # sequence containing color values
     cmap=plt.hot()
 )
 
@@ -53,19 +56,19 @@ fig2 = plt.figure()
 ax2 = fig2.add_subplot(projection="3d")
 
 pca = decomposition.PCA(n_components=3)
-pca.fit(data_dict.data)
+pca.fit(X)
 for feature_name, explained_variance_ratio, in zip(pca.get_feature_names_out(), pca.explained_variance_ratio_):
     print(f"{feature_name}: {100*explained_variance_ratio:.2f}%")
 print(f"Total explained variance: {100*sum(pca.explained_variance_ratio_):.2f}%")
 
-pca_data_points = pca.transform(data_dict.data)
+pca_data_points = pca.transform(X)
 
 # Reorder the labels to have colors matching the cluster results
 ax2.scatter(
     xs=pca_data_points[:, 0],
     ys=pca_data_points[:, 1],
     zs=pca_data_points[:, 2],
-    c=data_dict.target
+    c=y
 )
 
 ax2.set(

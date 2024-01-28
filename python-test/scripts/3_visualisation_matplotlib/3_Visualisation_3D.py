@@ -8,6 +8,9 @@ from PyQt5.QtGui import *
 # pip3 install matplotlib
 
 data_dict = datasets.load_iris()
+X = data_dict.data  # X - independent features (excluding target variable)
+y = data_dict.target  # y - dependent variables, called (target)
+
 print(f'Columns: {data_dict.feature_names[:3]}')
 
 # https://stackoverflow.com/questions/1985856/how-to-make-a-3d-scatter-plot
@@ -17,10 +20,10 @@ ax = fig.add_subplot(projection='3d')
 plt.cla()  # clear current axes
 
 scatter = ax.scatter(   # scatter3D(
-    xs=data_dict.data[:, 0],  # sequence containing x values
-    ys=data_dict.data[:, 1],  # sequence containing y values
-    zs=data_dict.data[:, 2],  # sequence containing z values
-    c=data_dict.target  # sequence containing colors index
+    xs=X[:, 0],  # sequence containing x values
+    ys=X[:, 1],  # sequence containing y values
+    zs=X[:, 2],  # sequence containing z values
+    c=y  # sequence containing colors index
 )
 
 ax.set(
