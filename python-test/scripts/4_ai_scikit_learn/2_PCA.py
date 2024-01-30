@@ -7,11 +7,11 @@ from PyQt5.QtGui import *
 
 
 # Linear regression analysis is used to predict the value of a variable based on the value of another variable.
-# The variable you want to predict is called the dependent variable. The variable you are using to predict the other
-# variable's value is called the independent variable.
+# The variable you want to predict is called the dependent variable (target). The variable you are using to predict
+# the other variable's value is called the independent variable.
 
 # PCA is an unsupervised method (only takes in data, no dependent variables)
-# Linear regression (in general) is a supervised learning method
+# Linear regression (in general) is a supervised learning method (takes target)
 
 
 # 1) Singular Value Decomposition
