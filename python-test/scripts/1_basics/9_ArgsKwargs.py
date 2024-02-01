@@ -1,10 +1,10 @@
 # https://youtu.be/4jBJhCaNrWU
 
-def order_pizza(size, *toppings, **details):
+def order_pizza(size, *args, **kwargs):
     print(f"Ordered a {size} pizza with the following toppings:")
-    for topping in toppings:
-        print(f"- {topping}")
-    print(details)
+    for args in args:
+        print(f"- {args}")
+    print(kwargs)  # dictionary
 
 
 order_pizza("pepperoni", "olives", delivery=True, tip=10)
