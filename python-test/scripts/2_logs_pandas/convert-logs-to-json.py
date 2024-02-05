@@ -11,8 +11,8 @@ from datetime import datetime
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
-# required in Pandas
-import pyarrow as pa
+# required in Pandas to read cvs
+import pyarrow.csv
 
 # NOTE: Execute from terminal in IntelliJ to use virtual environment
 
