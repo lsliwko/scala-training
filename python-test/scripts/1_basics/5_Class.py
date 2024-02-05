@@ -1,4 +1,4 @@
-class MyUser:
+class MyUser(object):  # MyUser(object) is a new-style class
     """
     MyClass does blah blah blah.
     """
