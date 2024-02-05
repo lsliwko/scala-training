@@ -7,6 +7,13 @@ from datetime import datetime
 # pip3 install pandas
 # pip3 install openpyxl
 
+# needed to run on windows
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+
+# required in Pandas
+import pyarrow as pa
+
 # NOTE: Execute from terminal in IntelliJ to use virtual environment
 
 

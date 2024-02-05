@@ -5,6 +5,9 @@ from sklearn import datasets, decomposition
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+# required in Pandas
+import pyarrow as pa
+
 
 # Linear regression analysis is used to predict the value of a variable based on the value of another variable.
 # The variable you want to predict is called the dependent variable (target). The variable you are using to predict

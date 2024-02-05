@@ -6,10 +6,10 @@ brew install npm
 brew install node
 
 pip3 uninstall jsonschema
-pip3 install jsonschema
+pip3 install jsonschema -U
 
 pip3 uninstall jupyterlab
-pip3 install jupyterlab
+pip3 install jupyterlab -U
 
 jupyter lab build
 
