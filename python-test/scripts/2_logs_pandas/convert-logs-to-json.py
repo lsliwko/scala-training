@@ -12,7 +12,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
 # required in Pandas to read cvs
-import pyarrow.csv
+import pyarrow.csv  # The IO modules are not imported by default in the main namespace
 
 # NOTE: Execute from terminal in IntelliJ to use virtual environment
 

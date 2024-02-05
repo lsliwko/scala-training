@@ -5,8 +5,6 @@ from sklearn import datasets, decomposition
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
-
-
 # Linear regression analysis is used to predict the value of a variable based on the value of another variable.
 # The variable you want to predict is called the dependent variable (target). The variable you are using to predict
 # the other variable's value is called the independent variable.
@@ -63,8 +61,8 @@ ax2 = fig2.add_subplot(projection="3d")
 pca = decomposition.PCA(n_components=3)
 pca.fit(X)
 for feature_name, explained_variance_ratio, in zip(pca.get_feature_names_out(), pca.explained_variance_ratio_):
-    print(f"{feature_name}: {100*explained_variance_ratio:.2f}%")
-print(f"Total explained variance: {100*sum(pca.explained_variance_ratio_):.2f}%")
+    print(f"{feature_name}: {100 * explained_variance_ratio:.2f}%")
+print(f"Total explained variance: {100 * sum(pca.explained_variance_ratio_):.2f}%")
 
 pca_data_points = pca.transform(X)
 

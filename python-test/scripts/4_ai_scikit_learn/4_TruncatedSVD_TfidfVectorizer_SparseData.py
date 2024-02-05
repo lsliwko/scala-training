@@ -6,6 +6,10 @@ from sklearn.preprocessing import StandardScaler
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# required in Pandas to read cvs
+import pyarrow.csv  # The IO modules are not imported by default in the main namespace
+
+
 # What are Sparse Datasets? The features of a dataset can be sparse or dense. If the data stored for
 # a particular feature contains mostly zeroes, it is referred to as a sparse feature. If the feature
 # is populated mostly with non-zero values, it is dense.
