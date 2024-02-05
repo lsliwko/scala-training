@@ -1,5 +1,6 @@
 from sklearn import datasets
 import pandas as pd
+import pyarrow.csv
 
 # pip3 install scikit-learn
 # NOTE: Execute from terminal in IntelliJ to use virtual environment

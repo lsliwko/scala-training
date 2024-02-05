@@ -1,4 +1,5 @@
 import pandas as pd
+import pyarrow.csv
 from sklearn.datasets import fetch_california_housing
 from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import StandardScaler
