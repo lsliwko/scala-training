@@ -4,6 +4,7 @@ class MyUser:
     """
 
     # class attributes are variables of a class that are shared between all of its instances
+    # MyUser.__dict__
     user_name_public = 'Les-shared-public'  # public
     _user_name_protected = 'Les-shared-protected'  # protected (ONLY BY CONVENTION!)
     __user_name_private = 'Les-shared-private'  # private ('__')
@@ -12,6 +13,7 @@ class MyUser:
         # instance attributes are owned by one specific instance of the class and are not shared between instances
         self.name = name  # instance attribute
         self.age = age  # instance attribute
+        # Note: it's the same as self.__dict__['name'] = name
 
     def function_public(self):
         return f'hello world public. my name is {self.name} and my age is {self.age}'
@@ -29,6 +31,7 @@ class MyBetterUser(MyUser):
 
 myUser1 = MyUser("Les1", 25)
 myUser2 = MyUser("Les2", 40)
+# myUser1.__dict__["name"] = "Tom"
 
 print(myUser1.function_public())
 
