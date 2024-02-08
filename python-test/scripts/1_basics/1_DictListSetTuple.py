@@ -51,6 +51,7 @@ defaultdict_sample = defaultdict(default_value)  # 0 is default value (function)
 # print(dict_sample["key-dont-exist"]) # error
 print(defaultdict_sample["key-dont-exist"])  # lambda function
 
+
 # Tuples are enclosed in parentheses
 tuple = (1, 2, "a")
 
@@ -60,12 +61,16 @@ def multiple_results_function():
     return 1, 2, 3
 
 
-(valueOne, valueTwo, valueThree) = multiple_results_function()
+valueOne, valueTwo, valueThree = multiple_results_function()
 print(f'Values are {valueOne}, {valueTwo} and {valueThree}')
 
 
 # string operations
-string_test = 'abcdefghijiklmnopqrst'
-print(f'{string_test.upper()}')  # capitalise
+print(f'{"abcdefghijklmnopqrstuwxyz".upper()}')  # capitalise
+
+# list slicing
+# [ start inclusive : end exclusive : step]
+string_test = '12345678901234567890'
 print(f'{string_test[:10]}')  # first 10 characters
 print(f'{string_test[5:]}')  # all characters after 5th
+print(f'{string_test[::2]}')  # every second character
