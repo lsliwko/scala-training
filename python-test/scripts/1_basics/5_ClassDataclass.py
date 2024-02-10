@@ -1,4 +1,6 @@
+import dataclasses
 from dataclasses import dataclass
+
 
 class MyUser(object):  # MyUser(object) is a new-style class
     """
@@ -53,6 +55,9 @@ class InventoryItem:
     def total_cost(self) -> float:
         return self.unit_price * self.quantity_on_hand
 
+
+inventoryItem = InventoryItem("name", 10, 1)
+print(dataclasses.asdict(inventoryItem))
 
 # NOTE:
 if __name__ == "__main__":
