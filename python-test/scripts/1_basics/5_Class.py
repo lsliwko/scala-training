@@ -39,3 +39,8 @@ print(myUser1.name)
 
 myUser1.user_name_public = 'new shared username'
 print(myUser2.user_name_public)
+
+
+# NOTE:
+if __name__ == "__main__":
+    print('Executed as script (not as module)')

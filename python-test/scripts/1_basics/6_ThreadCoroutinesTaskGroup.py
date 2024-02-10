@@ -1,4 +1,14 @@
 import asyncio
+from threading import Thread
+
+
+def my_function(a,b):
+    print(f'{a} {b}')
+
+
+thread = Thread(target=my_function, args=[1, "x"])
+thread.start()
+
 
 
 # https://docs.python.org/3/library/asyncio-task.html#coroutines
