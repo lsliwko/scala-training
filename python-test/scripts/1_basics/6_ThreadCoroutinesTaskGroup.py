@@ -9,6 +9,8 @@ def my_function(a,b):
 thread = Thread(target=my_function, args=[1, "x"])
 thread.start()
 
+# !!!NOTE: Threads in Python are not using multiple cores!!! (because of Global Interpreter Lock)
+# for true multi-CPU parallelism, use Futures or Coroutines
 
 
 # https://docs.python.org/3/library/asyncio-task.html#coroutines
