@@ -4,9 +4,10 @@ try:
     print('1. try block')
     # raise Exception(str(f"my exception"))
 except Exception as exception:
+    # executed upon exception
     print(f'2. except block with {repr(exception)}')
 else:
-    # executed when there is no exception
+    # executed when there is NO EXCEPTION raised in try block
     print('3. else block')
 finally:
     # executed always
