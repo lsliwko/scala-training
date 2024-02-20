@@ -15,6 +15,13 @@ print(my_function_with_arguments_2("Les", 10))
 print(my_function_with_arguments_2(name="Les", age=100))
 
 
+def my_function_multiple_values() -> (int, bool, str):  # returns tuple
+    return 1, True, 'a'
+
+
+x, y, z = my_function_multiple_values()
+
+
 def test_function_with_docstring(p1, p2, p3):
     """
     test_function does blah blah blah.
@@ -56,10 +63,9 @@ print(multiply_function2(5, 6))
 # dictionary comprehension
 list_sample = [1, 2, "a"]
 dict_sample = {
-    f"Item {index+1}": f"Value [{element}]"  # key : value
+    f"Item {index + 1}": f"Value [{element}]"  # key : value
     for index, element in enumerate(list_sample)
 }
-
 
 print(dict_sample)
 
