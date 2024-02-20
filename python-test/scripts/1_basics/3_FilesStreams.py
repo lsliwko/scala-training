@@ -1,3 +1,18 @@
+
+try:
+    # executed till first exception
+    print('1. try block')
+    # raise Exception(str(f"my exception"))
+except Exception as exception:
+    print(f'2. except block with {repr(exception)}')
+else:
+    # executed when there is no exception
+    print('3. else block')
+finally:
+    # executed always
+    print('4. finally block')
+
+
 try:
     file_sample = open(
         file="sample_novel.txt",

@@ -60,5 +60,8 @@ dict_sample = {
     for index, element in enumerate(list_sample)
 }
 
+
 print(dict_sample)
 
+# raises AssertionError
+assert dict_sample == {'a': 1}
