@@ -12,5 +12,5 @@ for data_row in df.itertuples():
 print(hashes)
 df.insert(0, 'hash', hashes)
 
-df.to_csv("checks-with-hash-ids.csv", index=False, header=False)
+df.to_csv("../../data-git-ignore/checks with ids 2.csv", index=False, header=False)
 
