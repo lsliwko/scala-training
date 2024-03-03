@@ -13,7 +13,7 @@ X = dataset.iloc[:, 1:].values  # all columns after first are your training data
 y = dataset.iloc[:, 0].values  # first column is your result
 features_count = len(X[0])
 
-# here I am assuming you have yes / no answers, i.e. not numeric values
+# here I am assuming you have yes / no answers, i.e. categories, not numeric values
 columns_list = [i for i in range(1, features_count)]
 ct = ColumnTransformer(
     transformers=[('encoder', OneHotEncoder(), columns_list)],
