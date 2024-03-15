@@ -74,7 +74,7 @@ df = pd.DataFrame({'timestamp': [], 'level': [], 'message': []})
 #                    'b': pd.Series(dtype='str'),
 #                    'c': pd.Series(dtype='float')})
 
-for log_file in glob.glob('logs-parse/*.log'):
+for log_file in sorted(glob.glob('logs-parse/*.log')):
     append_logs(df, log_file, log_line_slf4j)
 
 df \
