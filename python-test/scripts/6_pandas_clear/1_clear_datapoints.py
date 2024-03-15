@@ -12,6 +12,7 @@ def append_datapoints(datapoints_file):
     dataset_tmp = pd.read_csv(datapoints_file, low_memory=False)
     print(f"Appending {datapoints_file} ({dataset_tmp.size} new datapoints)...")
 
+    # merge datapoints, remove duplicates
     dataset = pd.concat([dataset, dataset_tmp], ignore_index=True)
     dataset = dataset.drop_duplicates(subset='TASK ID', keep='last')
 
