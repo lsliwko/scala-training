@@ -22,5 +22,8 @@ def append_datapoints(datapoints_file):
 
 
 for datapoints_file in sorted(glob.glob('/Users/lsliwko/workspace/MASB/datapoint-bak/*.csv')):
-
-    # append_datapoints(datapoints_file)
+    tick_number = int(datapoints_file[91:97])
+    if tick_number <= 16910:
+        print(f"Skipping {tick_number}")
+        continue
+    append_datapoints(datapoints_file)
