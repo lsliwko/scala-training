@@ -10,14 +10,14 @@ def append_datapoints(datapoints_file):
     global dataset
 
     dataset_tmp = pd.read_csv(datapoints_file, low_memory=False)
-    print(f"Appending {datapoints_file} ({dataset_tmp.size} datapoints)...")
+    print(f"Appending {datapoints_file} ({len(dataset_tmp.index)} datapoints)...")
 
     # merge datapoints, remove duplicates
     dataset = pd.concat([dataset, dataset_tmp], ignore_index=True)
     dataset = dataset.drop_duplicates(subset='TASK ID', keep='last')
 
     # save cleared file
-    print(f"Saving {datapoints_merged_filename} ({dataset.size} datapoints)")
+    print(f"Saving {datapoints_merged_filename} ({len(dataset.index)} datapoints)")
     dataset.to_csv(datapoints_merged_filename, index=False)
 
 
