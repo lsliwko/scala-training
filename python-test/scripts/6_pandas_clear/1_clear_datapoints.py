@@ -3,7 +3,7 @@ import pandas as pd
 import pyarrow.csv
 
 datapoints_merged_filename = "datapoint-task-merged.csv"
-dataset = pd.read_csv("datapoint-task-empty.csv", low_memory=False)
+dataset = pd.read_csv("datapoint-task-merged.csv", low_memory=False)
 
 
 def append_datapoints(datapoints_file):
@@ -22,4 +22,5 @@ def append_datapoints(datapoints_file):
 
 
 for datapoints_file in sorted(glob.glob('/Users/lsliwko/workspace/MASB/datapoint-bak/*.csv')):
-    append_datapoints(datapoints_file)
+
+    # append_datapoints(datapoints_file)
