@@ -1,8 +1,3 @@
-from sklearn.inspection import DecisionBoundaryDisplay
-from sklearn.datasets import load_iris
-from sklearn.svm import SVC
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
 from sklearn.datasets import fetch_openml

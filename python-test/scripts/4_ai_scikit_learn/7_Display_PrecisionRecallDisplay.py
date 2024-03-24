@@ -1,14 +1,5 @@
-from sklearn.calibration import CalibrationDisplay
 from sklearn.model_selection import train_test_split
-from sklearn.datasets import make_classification
-from sklearn.pipeline import make_pipeline
-from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
 import matplotlib.pyplot as plt
-
-from sklearn.metrics import RocCurveDisplay
-from sklearn.metrics import DetCurveDisplay
 
 from xgboost import XGBClassifier
 from sklearn.datasets import load_wine
