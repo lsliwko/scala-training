@@ -1,12 +1,6 @@
-import numpy as np
 
-x = np.array([1, 0, 0, 1, 0])
+distribution = {'12500': 910204, '11500': 5, '10500': 131, '8500': 435, '11000': 211, '12000': 1577, '1': 15472, '8000': 25, '10000': 94, '1500': 3, '2000': 1, '4500': 6, '9500': 116, '9000': 158, '1000': 3197, '7000': 334, '6500': 1023, '3500': 1, '7500': 78, '6000': 462, '5500': 6, '3000': 8, '2500': 1435, '5000': 989}
 
-reverse_func = lambda t: int(t == False)
-reverse_func_np = np.vectorize(reverse_func)
-x = reverse_func_np(x)
+print(dict(sorted(distribution.items())))
 
-print(reverse_func(0))
-print(reverse_func(1))
 
-print(x)
