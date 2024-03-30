@@ -1,29 +1,73 @@
 import glob
 import pandas as pd
 import pyarrow.csv
+from collections import defaultdict
 
-datapoints_merged_filename = "datapoint-task-merged.csv"
-dataset = pd.read_csv("datapoint-task-merged.csv", low_memory=False)
+print("Loading file...")
+dataset = pd.read_excel(
+    "/Users/lsliwko/workspace/MASB/000AI-task-allocation-difficulty-paper/datapoint-task-merged-distribution.xlsx")
+print("File loaded")
 
-
-def append_datapoints(datapoints_file):
-    global dataset
-
-    dataset_tmp = pd.read_csv(datapoints_file, low_memory=False)
-    print(f"Appending {datapoints_file} ({len(dataset_tmp.index)} datapoints)...")
-
-    # merge datapoints, remove duplicates
-    dataset = pd.concat([dataset, dataset_tmp], ignore_index=True)
-    dataset = dataset.drop_duplicates(subset='TASK ID', keep='last')
-
-    # save cleared file
-    print(f"Saving {datapoints_merged_filename} ({len(dataset.index)} datapoints)")
-    dataset.to_csv(datapoints_merged_filename, index=False)
+distribution = defaultdict(lambda x: 0)
 
 
-for datapoints_file in sorted(glob.glob('/Users/lsliwko/workspace/MASB/datapoint-bak/*.csv')):
-    tick_number = int(datapoints_file[91:97])
-    if tick_number <= 16910:
-        print(f"Skipping {tick_number}")
-        continue
-    append_datapoints(datapoints_file)
+def update_distribution(available_nodes_count_tmp):
+    if available_nodes_count_tmp == 1:
+        distribution['1'] += 1
+    elif available_nodes_count_tmp <= 500:
+        distribution['500'] += 1
+    elif available_nodes_count_tmp <= 1000:
+        distribution['1000'] += 1
+    elif available_nodes_count_tmp <= 1500:
+        distribution['1500'] += 1
+    elif available_nodes_count_tmp <= 2000:
+        distribution['2000'] += 1
+    elif available_nodes_count_tmp <= 2500:
+        distribution['2500'] += 1
+    elif available_nodes_count_tmp <= 3000:
+        distribution['3000'] += 1
+    elif available_nodes_count_tmp <= 3500:
+        distribution['3500'] += 1
+    elif available_nodes_count_tmp <= 4000:
+        distribution['4000'] += 1
+    elif available_nodes_count_tmp <= 4500:
+        distribution['4500'] += 1
+    elif available_nodes_count_tmp <= 5000:
+        distribution['5000'] += 1
+    elif available_nodes_count_tmp <= 5500:
+        distribution['5500'] += 1
+    elif available_nodes_count_tmp <= 6000:
+        distribution['6000'] += 1
+    elif available_nodes_count_tmp <= 6500:
+        distribution['6500'] += 1
+    elif available_nodes_count_tmp <= 7000:
+        distribution['7000'] += 1
+    elif available_nodes_count_tmp <= 7500:
+        distribution['7500'] += 1
+    elif available_nodes_count_tmp <= 8000:
+        distribution['8000'] += 1
+    elif available_nodes_count_tmp <= 8500:
+        distribution['8500'] += 1
+    elif available_nodes_count_tmp <= 9000:
+        distribution['9000'] += 1
+    elif available_nodes_count_tmp <= 9500:
+        distribution['9500'] += 1
+    elif available_nodes_count_tmp <= 10000:
+        distribution['10000'] += 1
+    elif available_nodes_count_tmp <= 10500:
+        distribution['10500'] += 1
+    elif available_nodes_count_tmp <= 11000:
+        distribution['11000'] += 1
+    elif available_nodes_count_tmp <= 11500:
+        distribution['11500'] += 1
+    elif available_nodes_count_tmp <= 12000:
+        distribution['12000'] += 1
+    else:
+        distribution['12500'] += 1
+
+
+for index, row in dataset.iterrows():
+    available_nodes_count = int(row['AVAILABLE NODES COUNT'])
+    update_distribution(available_nodes_count)
+
+print(distribution)
