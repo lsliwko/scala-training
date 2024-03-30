@@ -8,7 +8,7 @@ dataset = pd.read_excel(
     "/Users/lsliwko/workspace/MASB/000AI-task-allocation-difficulty-paper/datapoint-task-merged-distribution.xlsx")
 print("File loaded")
 
-distribution = defaultdict(lambda x: 0)
+distribution = defaultdict(lambda: 0)
 
 
 def update_distribution(available_nodes_count_tmp):
