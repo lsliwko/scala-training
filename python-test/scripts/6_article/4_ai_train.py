@@ -4,14 +4,14 @@ import pandas as pd
 import pyarrow.csv
 
 print("Loading dataset...")
-dataset = pd.read_csv('/Users/lsliwko/workspace/MASB-DATA/with-header/datapoint-task-merged-cat-encoded-1-5000.csv')
+dataset = pd.read_csv('/Users/lsliwko/workspace/MASB-DATA/datapoint-task-merged-no-dups-cat-encoded.csv')
 X = dataset.iloc[:, 4:].values
 y = dataset.iloc[:, 0].values
 print(f"Dataset {X.shape}")
 
 from sklearn.model_selection import train_test_split
 
-X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.2, random_state=0)
+X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.8, random_state=0)
 print(f"TrainSet {X_train.shape}")
 
 print("Training...")
