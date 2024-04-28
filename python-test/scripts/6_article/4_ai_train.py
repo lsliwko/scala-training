@@ -9,10 +9,15 @@ X = dataset.iloc[:, 4:].values
 y = dataset.iloc[:, 0].values
 print(f"Dataset {X.shape}")
 
-from sklearn.model_selection import train_test_split
 
-X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.8, random_state=0)
+from sklearn.model_selection import train_test_split
+# X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.8, random_state=0)
+
+# use whole set to train
+X_train = X
+y_train = y
 print(f"TrainSet {X_train.shape}")
+
 
 print("Training...")
 from sklearn.linear_model import LinearRegression
@@ -20,5 +25,7 @@ regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 print("Trained")
 
-y_pred = regressor.predict(X_test)
+# y_pred = regressor.predict(X_test)
 
+
+dataset_trained = 
