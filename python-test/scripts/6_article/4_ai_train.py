@@ -16,16 +16,23 @@ from sklearn.model_selection import train_test_split
 # use whole set to train
 X_train = X
 y_train = y
+X_test = X
+y_test = y
 print(f"TrainSet {X_train.shape}")
 
 
-print("Training...")
+print("Training linear regression...")
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 print("Trained")
 
-# y_pred = regressor.predict(X_test)
+print("Predicting...")
+y_pred = regressor.predict(X_test)
+print("Predicted")
 
+print("Saving results")
+dataset.insert(1, "AVAILABLE NOTES PREDICTED", y_pred)
+dataset.to_csv('/Users/lsliwko/workspace/MASB-DATA/datapoint-task-merged-no-dups-cat-encoded-predicted.csv', index=False)
+print("Saved results")
 
-dataset_trained = 
