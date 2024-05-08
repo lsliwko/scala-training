@@ -33,57 +33,57 @@ print(f"TrainSet size = {X_train.shape}")
 
 def get_classification(available_nodes_count_tmp):
     if available_nodes_count_tmp == 1:
-        return 1  # A
+        return 'A'
     elif available_nodes_count_tmp <= 500:
-        return 2  # B
+        return 'B'
     elif available_nodes_count_tmp <= 1000:
-        return 3  # C
+        return 'C'
     elif available_nodes_count_tmp <= 1500:
-        return 4  # D
+        return 'D'
     elif available_nodes_count_tmp <= 2000:
-        return 5  # E
+        return 'E'
     elif available_nodes_count_tmp <= 2500:
-        return 6  # F
+        return 'F'
     elif available_nodes_count_tmp <= 3000:
-        return 7  # G
+        return 'G'
     elif available_nodes_count_tmp <= 3500:
-        return 8  # H
+        return 'H'
     elif available_nodes_count_tmp <= 4000:
-        return 9  # I
+        return 'I'
     elif available_nodes_count_tmp <= 4500:
-        return 10  # J
+        return 'J'
     elif available_nodes_count_tmp <= 5000:
-        return 11  # K
+        return 'K'
     elif available_nodes_count_tmp <= 5500:
-        return 12  # L
+        return 'L'
     elif available_nodes_count_tmp <= 6000:
-        return 13  # M
+        return 'M'
     elif available_nodes_count_tmp <= 6500:
-        return 14  # N
+        return 'N'
     elif available_nodes_count_tmp <= 7000:
-        return 15  # O
+        return 'O'
     elif available_nodes_count_tmp <= 7500:
-        return 15  # P
+        return 'P'
     elif available_nodes_count_tmp <= 8000:
-        return 16  # Q
+        return 'Q'
     elif available_nodes_count_tmp <= 8500:
-        return 17  # R
+        return 'R'
     elif available_nodes_count_tmp <= 9000:
-        return 18  # S
+        return 'S'
     elif available_nodes_count_tmp <= 9500:
-        return 19  # T
+        return 'T'
     elif available_nodes_count_tmp <= 10000:
-        return 20  # U
+        return 'U'
     elif available_nodes_count_tmp <= 10500:
-        return 21  # V
+        return 'V'
     elif available_nodes_count_tmp <= 11000:
-        return 22  # W
+        return 'W'
     elif available_nodes_count_tmp <= 11500:
-        return 23  # X
+        return 'X'
     elif available_nodes_count_tmp <= 12000:
-        return 24  # Y
+        return 'Y'
     else:
-        return 25  # Z
+        return 'Z'
 
 
 model = None
