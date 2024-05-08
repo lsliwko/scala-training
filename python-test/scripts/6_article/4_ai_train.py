@@ -10,6 +10,8 @@ from sklearn.tree import DecisionTreeClassifier
 from time import perf_counter
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
 
 MINI_TAG = "-mini"  # empty for full file
 
@@ -129,10 +131,28 @@ if CLASSIFIER_OR_REGRESSOR:
     dataset.insert(0, "AVAILABLE NODES CLASS", y)
     dataset.insert(1, "AVAILABLE NODES CLASS PREDICTED", y_pred)
 
-    print(classification_report(y, y_pred, labels=np.unique(y)))
-    for index, (val_y, val_y_pred) in enumerate(zip(y, y_pred)):
-        if val_y != val_y_pred:
-            print(f"Difference at row {index + 2}: {val_y} <> {val_y_pred}")
+    # print(accuracy_score(y, y_pred))
+    # print('-----')
+    y_true = y
+
+    print(classification_report(y_true, y_pred, digits=6, labels=np.unique(y_true)))
+    print('-----')
+
+    # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
+    # https://stackoverflow.com/questions/50325786/sci-kit-learn-how-to-print-labels-for-confusion-matrix
+    unique_label = np.unique([y_true, y_pred])
+    confusion_matrix_pd = pd.DataFrame(
+        confusion_matrix(y_true, y_pred, labels=unique_label),
+        index=['true:{:}'.format(x) for x in unique_label],
+        columns=['pred:{:}'.format(x) for x in unique_label]
+    )
+    print(confusion_matrix_pd.to_string())
+    print('-----')
+
+    for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
+        if val_y_true != val_y_pred:
+            print(f"Difference at row {index + 2}: {val_y_true} <> {val_y_pred}")
+    print('-----')
 else:
     dataset.insert(1, "AVAILABLE NODES PREDICTED", y_pred)
 
