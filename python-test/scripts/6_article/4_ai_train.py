@@ -15,7 +15,7 @@ MINI_TAG = "-mini"  # empty for full file
 
 print("Loading dataset...")
 # mini is for testing:
-# head -n 3000 datapoint-task-merged-no-dups-cat-encoded.csv > datapoint-mini-task-merged-no-dups-cat-encoded.csv
+# head -n 2001 datapoint-task-merged-no-dups-cat-encoded.csv > datapoint-mini-task-merged-no-dups-cat-encoded.csv
 dataset = pd.read_csv(f'/Users/lsliwko/workspace/MASB-DATA/datapoint{MINI_TAG}-task-merged-no-dups-cat-encoded.csv')
 X = dataset.iloc[:, 4:].values
 y = dataset.iloc[:, 0].values
