@@ -13,7 +13,7 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 
-MINI_TAG = "-mini"  # empty for full file
+MINI_TAG = "" # "-mini"  # empty for full file
 
 print("Loading dataset...")
 # mini is for testing:
@@ -135,7 +135,7 @@ if CLASSIFIER_OR_REGRESSOR:
     # print('-----')
     y_true = y
 
-    print(classification_report(y_true, y_pred, digits=6, labels=np.unique(y_true)))
+    print(classification_report(y_true, y_pred, digits=6, zero_division=0, labels=np.unique(y_true)))
     print('-----')
 
     # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
