@@ -9,6 +9,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.tree import DecisionTreeClassifier
 from time import perf_counter
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
 
 MINI_TAG = "-mini"  # empty for full file
 
@@ -127,6 +128,9 @@ if CLASSIFIER_OR_REGRESSOR:
     dataset.drop(dataset.columns[0], axis=1, inplace=True)  # drop first column
     dataset.insert(0, "AVAILABLE NODES CLASS", y)
     dataset.insert(1, "AVAILABLE NODES CLASS PREDICTED", y_pred)
+
+    print(classification_report(y, y_pred, labels=np.unique(y)))
+
 else:
     dataset.insert(1, "AVAILABLE NODES PREDICTED", y_pred)
 
