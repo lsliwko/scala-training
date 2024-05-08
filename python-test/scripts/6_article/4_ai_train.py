@@ -130,7 +130,9 @@ if CLASSIFIER_OR_REGRESSOR:
     dataset.insert(1, "AVAILABLE NODES CLASS PREDICTED", y_pred)
 
     print(classification_report(y, y_pred, labels=np.unique(y)))
-
+    for index, (val_y, val_y_pred) in enumerate(zip(y, y_pred)):
+        if val_y != val_y_pred:
+            print(f"Difference at row {index + 2}: {val_y} <> {val_y_pred}")
 else:
     dataset.insert(1, "AVAILABLE NODES PREDICTED", y_pred)
 
