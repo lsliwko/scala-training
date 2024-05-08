@@ -10,10 +10,12 @@ from sklearn.tree import DecisionTreeClassifier
 from time import perf_counter
 from sklearn.model_selection import train_test_split
 
+MINI_TAG = "-mini"  # empty for full file
+
 print("Loading dataset...")
 # mini is for testing:
 # head -n 3000 datapoint-task-merged-no-dups-cat-encoded.csv > datapoint-mini-task-merged-no-dups-cat-encoded.csv
-dataset = pd.read_csv('/Users/lsliwko/workspace/MASB-DATA/datapoint-mini-task-merged-no-dups-cat-encoded.csv')
+dataset = pd.read_csv(f'/Users/lsliwko/workspace/MASB-DATA/datapoint{MINI_TAG}-task-merged-no-dups-cat-encoded.csv')
 X = dataset.iloc[:, 4:].values
 y = dataset.iloc[:, 0].values
 print(f"Dataset size = {X.shape}")
@@ -106,7 +108,6 @@ else:
     # model = BayesianRidge()
     # model = SGDRegressor()
 
-
 # try ensemble (zespol):
 # https://scikit-learn.org/stable/auto_examples/ensemble/plot_gradient_boosting_regression.html
 
@@ -130,7 +131,7 @@ else:
     dataset.insert(1, "AVAILABLE NODES PREDICTED", y_pred)
 
 dataset.to_csv(
-    '/Users/lsliwko/workspace/MASB-DATA/datapoint-mini-task-merged-no-dups-cat-encoded-predicted.csv',
+    f'/Users/lsliwko/workspace/MASB-DATA/datapoint{MINI_TAG}-task-merged-no-dups-cat-encoded-predicted.csv',
     index=False
 )
 print(f"Saved results in {(perf_counter() - start) * 1000:.0f} ms")
