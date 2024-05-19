@@ -13,7 +13,7 @@ from sklearn.naive_bayes import GaussianNB, BernoulliNB, MultinomialNB, Categori
 from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier, NearestCentroid
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC, NuSVC
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.tree import DecisionTreeRegressor, ExtraTreeClassifier
 from sklearn.tree import DecisionTreeClassifier
 from time import perf_counter
 from sklearn.model_selection import train_test_split
@@ -125,18 +125,34 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # DONE model = SGDClassifier(fit_intercept=False, max_iter=100, random_state=42)
     # DONE model = GaussianNB()
 
-    model = NuSVC()
+    # import inspect
+    # from sklearn.utils.testing import all_estimators
+    # for name, clf in all_estimators(type_filter='classifier'):
+    #     if 'sample_weight' in inspect.getargspec(clf().fit)[0]: print name
+    # model = AdaBoostClassifier(random_state=42)    # AdaBoost
+    # BernoulliNB,
+    # DecisionTreeClassifier,
+    # ExtraTreeClassifier,
+    # ExtraTreesClassifier,
+    # MultinomialNB,
+    # NuSVC,
+    # Perceptron,
+    # RandomForestClassifier,
+    # RidgeClassifierCV,
+    # SGDClassifier,
+    # SVC
+    model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=30, random_state=42)    # AdaBoost
+
 
     # DOES NOT WORK model = GaussianProcessClassifier()
     # DOES NOT WORK model = QuadraticDiscriminantAnalysis()
     # DOES NOT WORK model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
     # DOES NOT WORK model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
+    # DOES NOT WORK model = NuSVC()    # RBF SVM
 
     # AdaBoostClassifier,
     # ExtraTreeClassifier,
     # ExtraTreesClassifier,
-    # NuSVC,
-    # model = AdaBoostClassifier(estimator=KNeighborsClassifier(n_neighbors=3), algorithm="SAMME", n_estimators=10, learning_rate=1.0, random_state=42)    # AdaBoost
 
 else:
     model = LinearRegression()
