@@ -6,6 +6,7 @@ import pyarrow.csv
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, AdaBoostClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.gaussian_process.kernels import RBF
 from sklearn.linear_model import LinearRegression, BayesianRidge, LogisticRegression, SGDRegressor
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
@@ -31,13 +32,16 @@ X = dataset.iloc[:, 4:].values
 y = dataset.iloc[:, 0].values
 print(f"Dataset size = {X.shape}")
 
-X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.8, random_state=42)
+DATASET_TRAIN_TEST_SPLIT_FLAG = True
 
-# use whole set to train
-# X_train = X
-# y_train = y
-# X_test = X
-# y_test = y
+if DATASET_TRAIN_TEST_SPLIT_FLAG:
+    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75, random_state=42)
+else:
+    # use whole set to train
+    X_train = X
+    y_train = y
+    X_test = X
+    y_test = y
 print(f"TrainSet size = {X_train.shape}")
 print(f"TestSet size = {X_test.shape}")
 
@@ -97,12 +101,11 @@ def get_classification(available_nodes_count_tmp):
         return 'Z'
 
 
-model = None
-
-CLASSIFIER_OR_REGRESSOR = 1
+CLASSIFIER_OR_REGRESSOR_FLAG = True
 
 # Classifier
-if CLASSIFIER_OR_REGRESSOR:
+model = None
+if CLASSIFIER_OR_REGRESSOR_FLAG:
     vfunc_get_classification = np.vectorize(get_classification)
     y = vfunc_get_classification(y)
     y_train = vfunc_get_classification(y_train)
@@ -110,14 +113,14 @@ if CLASSIFIER_OR_REGRESSOR:
 
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
-    model = KNeighborsClassifier(n_neighbors=3)  # Nearest Neighbors
+    # DONE model = KNeighborsClassifier(n_neighbors=3)  # Nearest Neighbors
     # model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
-    # model = SVC(gamma=2, C=1, random_state=42)    # RBF SVM
-    # model = GaussianProcessClassifier(1.0 * RBF(1.0), random_state=42)    # Gaussian Process
-    # model = DecisionTreeClassifier(max_depth=5, random_state=42)   # Decision Tree classifier
-    # model = RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1, random_state=42) # Random Forest
-    # model = MLPClassifier(alpha=1, max_iter=1000, random_state=42)    # Neural Net
-    # model = AdaBoostClassifier(algorithm="SAMME", random_state=42)    # AdaBoost
+    # model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
+    # model = GaussianProcessClassifier()  # 1.0 * RBF(1.0), random_state=42)    # Gaussian Process
+    # DONE model = DecisionTreeClassifier(max_depth=15, class_weight="balanced", random_state=42)  # Decision Tree classifier
+    model = RandomForestClassifier()  # max_depth=5, n_estimators=10, max_features=1, random_state=42) # Random Forest
+    # model = MLPClassifier() # alpha=1, max_iter=1000, random_state=42)    # Neural Net
+    # model = AdaBoostClassifier() # algorithm="SAMME", random_state=42)    # AdaBoost
     # model = GaussianNB() # Naive Bayes
     # model = QuadraticDiscriminantAnalysis() # QDA
 
@@ -145,24 +148,24 @@ y_pred = model.predict(X_test)
 print(f"Predicted in {(perf_counter() - start) * 1000:.0f} ms")
 
 print(f"Accuracy report for {str(model)}...")
-if CLASSIFIER_OR_REGRESSOR:
+if CLASSIFIER_OR_REGRESSOR_FLAG:
     # print(accuracy_score(y, y_pred))
     # print('-----')
     y_true = y_test
 
-    print(classification_report(y_true, y_pred, digits=6, zero_division=0, labels=np.unique(y_true)))
+    print(classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
     print('-----')
 
     # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
     # https://stackoverflow.com/questions/50325786/sci-kit-learn-how-to-print-labels-for-confusion-matrix
-    unique_label = np.unique([y_true, y_pred])
-    confusion_matrix_pd = pd.DataFrame(
-        confusion_matrix(y_true, y_pred, labels=unique_label),
-        index=['true:{:}'.format(x) for x in unique_label],
-        columns=['pred:{:}'.format(x) for x in unique_label]
-    )
-    print(confusion_matrix_pd.to_string())
-    print('-----')
+    # unique_label = np.unique([y_true, y_pred])
+    # confusion_matrix_pd = pd.DataFrame(
+    #     confusion_matrix(y_true, y_pred, labels=unique_label),
+    #     index=['true:{:}'.format(x) for x in unique_label],
+    #     columns=['pred:{:}'.format(x) for x in unique_label]
+    # )
+    # print(confusion_matrix_pd.to_string())
+    # print('-----')
 
     # for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
     #     if val_y_true != val_y_pred:
@@ -183,7 +186,7 @@ if SAVE_RESULTS:
     print("Saving results...")
     start = perf_counter()
 
-    if CLASSIFIER_OR_REGRESSOR:
+    if CLASSIFIER_OR_REGRESSOR_FLAG:
         dataset.drop(dataset.columns[0], axis=1, inplace=True)  # drop first column
         dataset.insert(0, "AVAILABLE NODES CLASS", y)
         dataset.insert(1, "AVAILABLE NODES CLASS PREDICTED", y_pred)
