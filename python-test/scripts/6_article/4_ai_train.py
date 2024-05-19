@@ -31,7 +31,7 @@ X = dataset.iloc[:, 4:].values
 y = dataset.iloc[:, 0].values
 print(f"Dataset size = {X.shape}")
 
-X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.8, random_state=0)
+X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.8, random_state=42)
 
 # use whole set to train
 # X_train = X
@@ -39,6 +39,7 @@ X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.8, random_
 # X_test = X
 # y_test = y
 print(f"TrainSet size = {X_train.shape}")
+print(f"TestSet size = {X_test.shape}")
 
 
 def get_classification(available_nodes_count_tmp):
@@ -109,7 +110,7 @@ if CLASSIFIER_OR_REGRESSOR:
 
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
-    model = KNeighborsClassifier(n_neighbors=4)  # Nearest Neighbors
+    model = KNeighborsClassifier(n_neighbors=3)  # Nearest Neighbors
     # model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
     # model = SVC(gamma=2, C=1, random_state=42)    # RBF SVM
     # model = GaussianProcessClassifier(1.0 * RBF(1.0), random_state=42)    # Gaussian Process
