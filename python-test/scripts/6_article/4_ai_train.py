@@ -114,7 +114,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
-    # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
+    model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
     # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=42)  # Decision Tree classifier
     # DONE model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)  # Random Forest
     # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)  # Artificial Neural Network
@@ -122,21 +122,19 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # DONE model = NearestCentroid()
     # DONE model = Perceptron(max_iter=100, random_state=42)
     # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42)
-    model = SGDClassifier(fit_intercept=False, alpha=0.2, random_state=42)
+    # DONE model = SGDClassifier(fit_intercept=False, max_iter=100, random_state=42)
+    # model = GaussianNB()
 
-
-# AdaBoostClassifier,
-# ExtraTreeClassifier,
-# ExtraTreesClassifier,
-# NuSVC,
-# SGDClassifier,
-# SVC
-# model = AdaBoostClassifier(estimator=KNeighborsClassifier(n_neighbors=3), algorithm="SAMME", n_estimators=10, learning_rate=1.0, random_state=42)    # AdaBoost
-# model = GaussianNB() # Naive Bayes
-# model = QuadraticDiscriminantAnalysis() # QDA
-# model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
-# model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
-# model = GaussianProcessClassifier()  # 1.0 * RBF(1.0), random_state=42)    # Gaussian Process
+    # AdaBoostClassifier,
+    # ExtraTreeClassifier,
+    # ExtraTreesClassifier,
+    # NuSVC,
+    # model = AdaBoostClassifier(estimator=KNeighborsClassifier(n_neighbors=3), algorithm="SAMME", n_estimators=10, learning_rate=1.0, random_state=42)    # AdaBoost
+    # model = GaussianNB() # Naive Bayes
+    # model = QuadraticDiscriminantAnalysis() # QDA
+    # model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
+    # model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
+    # model = GaussianProcessClassifier()  # 1.0 * RBF(1.0), random_state=42)    # Gaussian Process
 
 else:
     model = LinearRegression()
@@ -162,10 +160,12 @@ y_pred = model.predict(X_test)
 print(f"Predicted in {(perf_counter() - start) * 1000:.0f} ms")
 
 print(f"Accuracy report for {str(model)}...")
+print('-----')
 if CLASSIFIER_OR_REGRESSOR_FLAG:
-    # print(accuracy_score(y, y_pred))
-    # print('-----')
     y_true = y_test
+
+    print(f"Accuracy: {accuracy_score(y_true, y_pred)}")
+    print('-----')
 
     print(classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
     print('-----')
