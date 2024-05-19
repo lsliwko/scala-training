@@ -118,7 +118,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
     # model = GaussianProcessClassifier()  # 1.0 * RBF(1.0), random_state=42)    # Gaussian Process
     # DONE model = DecisionTreeClassifier(max_depth=15, class_weight="balanced", random_state=42)  # Decision Tree classifier
-    model = RandomForestClassifier()  # max_depth=5, n_estimators=10, max_features=1, random_state=42) # Random Forest
+    model = RandomForestClassifier(max_depth=15, class_weight="balanced", n_estimators=100, max_features=1, random_state=42)  # Random Forest
     # model = MLPClassifier() # alpha=1, max_iter=1000, random_state=42)    # Neural Net
     # model = AdaBoostClassifier() # algorithm="SAMME", random_state=42)    # AdaBoost
     # model = GaussianNB() # Naive Bayes
