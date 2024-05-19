@@ -12,7 +12,7 @@ from sklearn.linear_model import LinearRegression, BayesianRidge, LogisticRegres
 from sklearn.naive_bayes import GaussianNB, BernoulliNB, MultinomialNB, CategoricalNB, ComplementNB
 from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier, NearestCentroid
 from sklearn.neural_network import MLPClassifier
-from sklearn.svm import SVC
+from sklearn.svm import SVC, NuSVC
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.tree import DecisionTreeClassifier
 from time import perf_counter
@@ -114,7 +114,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
-    model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
+    # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
     # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=42)  # Decision Tree classifier
     # DONE model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)  # Random Forest
     # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)  # Artificial Neural Network
@@ -123,18 +123,20 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # DONE model = Perceptron(max_iter=100, random_state=42)
     # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42)
     # DONE model = SGDClassifier(fit_intercept=False, max_iter=100, random_state=42)
-    # model = GaussianNB()
+    # DONE model = GaussianNB()
+
+    model = NuSVC()
+
+    # DOES NOT WORK model = GaussianProcessClassifier()
+    # DOES NOT WORK model = QuadraticDiscriminantAnalysis()
+    # DOES NOT WORK model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
+    # DOES NOT WORK model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
 
     # AdaBoostClassifier,
     # ExtraTreeClassifier,
     # ExtraTreesClassifier,
     # NuSVC,
     # model = AdaBoostClassifier(estimator=KNeighborsClassifier(n_neighbors=3), algorithm="SAMME", n_estimators=10, learning_rate=1.0, random_state=42)    # AdaBoost
-    # model = GaussianNB() # Naive Bayes
-    # model = QuadraticDiscriminantAnalysis() # QDA
-    # model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
-    # model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
-    # model = GaussianProcessClassifier()  # 1.0 * RBF(1.0), random_state=42)    # Gaussian Process
 
 else:
     model = LinearRegression()
