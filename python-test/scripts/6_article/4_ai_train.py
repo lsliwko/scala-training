@@ -7,9 +7,10 @@ from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, AdaBoostClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.gaussian_process.kernels import RBF
-from sklearn.linear_model import LinearRegression, BayesianRidge, LogisticRegression, SGDRegressor
-from sklearn.naive_bayes import GaussianNB
-from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
+from sklearn.linear_model import LinearRegression, BayesianRidge, LogisticRegression, SGDRegressor, Perceptron, \
+    RidgeClassifierCV, RidgeClassifier, ElasticNet, Lasso, SGDClassifier
+from sklearn.naive_bayes import GaussianNB, BernoulliNB, MultinomialNB, CategoricalNB, ComplementNB
+from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier, NearestCentroid
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeRegressor
@@ -113,16 +114,29 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
-    # DONE model = KNeighborsClassifier(n_neighbors=3)  # Nearest Neighbors
-    # model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
-    # model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
-    # model = GaussianProcessClassifier()  # 1.0 * RBF(1.0), random_state=42)    # Gaussian Process
-    # DONE model = DecisionTreeClassifier(max_depth=15, class_weight="balanced", random_state=42)  # Decision Tree classifier
-    model = RandomForestClassifier(max_depth=15, class_weight="balanced", n_estimators=100, max_features=1, random_state=42)  # Random Forest
-    # model = MLPClassifier() # alpha=1, max_iter=1000, random_state=42)    # Neural Net
-    # model = AdaBoostClassifier() # algorithm="SAMME", random_state=42)    # AdaBoost
-    # model = GaussianNB() # Naive Bayes
-    # model = QuadraticDiscriminantAnalysis() # QDA
+    # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
+    # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=42)  # Decision Tree classifier
+    # DONE model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)  # Random Forest
+    # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)  # Artificial Neural Network
+    # DONE model = ComplementNB(alpha=0.3)
+    # DONE model = NearestCentroid()
+    # DONE model = Perceptron(max_iter=100, random_state=42)
+    # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42)
+    model = SGDClassifier(fit_intercept=False, alpha=0.2, random_state=42)
+
+
+# AdaBoostClassifier,
+# ExtraTreeClassifier,
+# ExtraTreesClassifier,
+# NuSVC,
+# SGDClassifier,
+# SVC
+# model = AdaBoostClassifier(estimator=KNeighborsClassifier(n_neighbors=3), algorithm="SAMME", n_estimators=10, learning_rate=1.0, random_state=42)    # AdaBoost
+# model = GaussianNB() # Naive Bayes
+# model = QuadraticDiscriminantAnalysis() # QDA
+# model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
+# model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
+# model = GaussianProcessClassifier()  # 1.0 * RBF(1.0), random_state=42)    # Gaussian Process
 
 else:
     model = LinearRegression()
@@ -156,16 +170,18 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     print(classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
     print('-----')
 
+    '''
     # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
     # https://stackoverflow.com/questions/50325786/sci-kit-learn-how-to-print-labels-for-confusion-matrix
-    # unique_label = np.unique([y_true, y_pred])
-    # confusion_matrix_pd = pd.DataFrame(
-    #     confusion_matrix(y_true, y_pred, labels=unique_label),
-    #     index=['true:{:}'.format(x) for x in unique_label],
-    #     columns=['pred:{:}'.format(x) for x in unique_label]
-    # )
-    # print(confusion_matrix_pd.to_string())
-    # print('-----')
+    unique_label = np.unique([y_true, y_pred])
+    confusion_matrix_pd = pd.DataFrame(
+        confusion_matrix(y_true, y_pred, labels=unique_label),
+        index=['true:{:}'.format(x) for x in unique_label],
+        columns=['pred:{:}'.format(x) for x in unique_label]
+    )
+    print(confusion_matrix_pd.to_string())
+    print('-----')
+    '''
 
     # for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
     #     if val_y_true != val_y_pred:
@@ -174,9 +190,9 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 else:
     pass
 
-SAVE_RESULTS = False
+SAVE_RESULTS_FLAG = False
 
-if SAVE_RESULTS:
+if SAVE_RESULTS_FLAG:
 
     print(f"Predicting full dataset (for results save) {str(model)}...")
     start = perf_counter()
