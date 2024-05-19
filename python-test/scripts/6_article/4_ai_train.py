@@ -114,7 +114,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
-    # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
+    model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
     # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=42)  # Decision Tree classifier
     # DONE model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)  # Random Forest
     # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)  # Artificial Neural Network
@@ -141,7 +141,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # RidgeClassifierCV,
     # SGDClassifier,
     # SVC
-    model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=30, random_state=42)    # AdaBoost
+    # model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=30, random_state=42)    # AdaBoost
 
 
     # DOES NOT WORK model = GaussianProcessClassifier()
