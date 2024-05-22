@@ -144,7 +144,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=30, random_state=42)    # AdaBoost
 
 
-    model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=20, bootstrap=False, random_state=42)
+    model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=42)
 
     # DOES NOT WORK model = GaussianProcessClassifier()
     # DOES NOT WORK model = QuadraticDiscriminantAnalysis()
