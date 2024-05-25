@@ -25,6 +25,7 @@ from sklearn.metrics import accuracy_score
 print(f"The scikit-learn version: {sklearn.__version__}")
 
 MINI_TAG = ""  # "-mini"  # empty for full file
+RANDOM_STATE = 42
 
 print("Loading dataset...")
 # mini is for testing:
@@ -37,7 +38,7 @@ print(f"Dataset size = {X.shape}")
 DATASET_TRAIN_TEST_SPLIT_FLAG = True
 
 if DATASET_TRAIN_TEST_SPLIT_FLAG:
-    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75, random_state=42)
+    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75, random_state=RANDOM_STATE)
 else:
     # use whole set to train
     X_train = X
@@ -116,38 +117,38 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
     # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
-    # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=42)  # Decision Tree classifier
-    # DONE model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)  # Random Forest
-    # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)  # Artificial Neural Network
+    # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Decision Tree classifier
+    # DONE model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
+    # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
     # DONE model = ComplementNB(alpha=0.3)
     # DONE model = NearestCentroid()
-    # DONE model = Perceptron(max_iter=100, random_state=42)
-    # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42)
-    # DONE model = SGDClassifier(fit_intercept=False, max_iter=100, random_state=42)
+    # DONE model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
+    # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
+    # DONE model = SGDClassifier(fit_intercept=False, max_iter=100, random_state=RANDOM_STATE)
     # DONE model = GaussianNB()
 
     # import inspect
     # from sklearn.utils.testing import all_estimators
     # for name, clf in all_estimators(type_filter='classifier'):
     #     if 'sample_weight' in inspect.getargspec(clf().fit)[0]: print name
-    # model = AdaBoostClassifier(random_state=42)    # AdaBoost
+    # model = AdaBoostClassifier(random_state=RANDOM_STATE)    # AdaBoost
     # BernoulliNB,DecisionTreeClassifier,ExtraTreeClassifier,ExtraTreesClassifier,MultinomialNB,NuSVC,Perceptron,RandomForestClassifier,RidgeClassifierCV,SGDClassifier,SVC
-    # DONE model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=30, random_state=42)    # AdaBoost
+    # DONE model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=30, random_state=RANDOM_STATE)    # AdaBoost
 
-    # DONE model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=42)
+    # DONE model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=RANDOM_STATE)
 
     model = VotingClassifier(
         estimators=[
-            ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)),
-            ('Neural-Network', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)),
-            ('Ridge-Regression', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42))],
-        voting='hard', n_jobs=-1, weights=[1.0, 1.0, 1.0]
+            ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)),
+            ('Neural-Network', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)),
+            ('Ridge-Regression', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE))],
+        voting='hard', n_jobs=-1, weights=[1.1, 1.0, 1.2]
     )
 
     # DOES NOT WORK model = GaussianProcessClassifier()
     # DOES NOT WORK model = QuadraticDiscriminantAnalysis()
-    # DOES NOT WORK model = SVC(kernel="linear", C=0.025, random_state=42)    # Linear SVM
-    # DOES NOT WORK model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=42)    # RBF SVM
+    # DOES NOT WORK model = SVC(kernel="linear", C=0.025, random_state=RANDOM_STATE)    # Linear SVM
+    # DOES NOT WORK model = SVC(kernel="rbf") # , gamma=2, C=1, random_state=RANDOM_STATE)    # RBF SVM
     # DOES NOT WORK model = NuSVC()    # RBF SVM
 
     # AdaBoostClassifier,
