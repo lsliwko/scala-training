@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import pyarrow.csv
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, AdaBoostClassifier, BaggingClassifier
+from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, AdaBoostClassifier, BaggingClassifier, \
+    VotingClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.gaussian_process.kernels import RBF
 from sklearn.linear_model import LinearRegression, BayesianRidge, LogisticRegression, SGDRegressor, Perceptron, \
@@ -130,21 +131,18 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # for name, clf in all_estimators(type_filter='classifier'):
     #     if 'sample_weight' in inspect.getargspec(clf().fit)[0]: print name
     # model = AdaBoostClassifier(random_state=42)    # AdaBoost
-    # BernoulliNB,
-    # DecisionTreeClassifier,
-    # ExtraTreeClassifier,
-    # ExtraTreesClassifier,
-    # MultinomialNB,
-    # NuSVC,
-    # Perceptron,
-    # RandomForestClassifier,
-    # RidgeClassifierCV,
-    # SGDClassifier,
-    # SVC
-    # model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=30, random_state=42)    # AdaBoost
+    # BernoulliNB,DecisionTreeClassifier,ExtraTreeClassifier,ExtraTreesClassifier,MultinomialNB,NuSVC,Perceptron,RandomForestClassifier,RidgeClassifierCV,SGDClassifier,SVC
+    # DONE model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=30, random_state=42)    # AdaBoost
 
+    # DONE model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=42)
 
-    model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=42), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=42)
+    model = VotingClassifier(
+        estimators=[
+            ('lr', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)),
+            ('rf', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)),
+            ('gnb', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42))],
+        voting='hard'
+    )
 
     # DOES NOT WORK model = GaussianProcessClassifier()
     # DOES NOT WORK model = QuadraticDiscriminantAnalysis()
@@ -190,7 +188,6 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     print(classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
     print('-----')
 
-    '''
     # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
     # https://stackoverflow.com/questions/50325786/sci-kit-learn-how-to-print-labels-for-confusion-matrix
     unique_label = np.unique([y_true, y_pred])
@@ -201,12 +198,11 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     )
     print(confusion_matrix_pd.to_string())
     print('-----')
-    '''
 
-    # for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
-    #     if val_y_true != val_y_pred:
-    #         print(f"Difference at row {index + 2}: {val_y_true} <> {val_y_pred}")
-    # print('-----')
+    for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
+        if val_y_true != val_y_pred:
+            print(f"Difference at row {index + 2}: {val_y_true} <> {val_y_pred}")
+    print('-----')
 else:
     pass
 
