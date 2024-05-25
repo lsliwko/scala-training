@@ -141,7 +141,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
             ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)),
             ('Neural-Network', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)),
             ('Ridge-Regression', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42))],
-        voting='hard'
+        voting='hard', n_jobs=-1, weights=[1.0, 1.0, 1.0]
     )
 
     # DOES NOT WORK model = GaussianProcessClassifier()
