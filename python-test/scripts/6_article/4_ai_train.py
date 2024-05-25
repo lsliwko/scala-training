@@ -138,9 +138,9 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
     model = VotingClassifier(
         estimators=[
-            ('lr', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)),
-            ('rf', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)),
-            ('gnb', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42))],
+            ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=42)),
+            ('Neural-Network', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=42)),
+            ('Ridge-Regression', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=42))],
         voting='hard'
     )
 
