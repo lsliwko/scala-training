@@ -38,7 +38,7 @@ print(f"Dataset size = {X.shape}")
 DATASET_TRAIN_TEST_SPLIT_FLAG = True
 
 if DATASET_TRAIN_TEST_SPLIT_FLAG:
-    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75, random_state=RANDOM_STATE)
+    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.9, random_state=RANDOM_STATE)
 else:
     # use whole set to train
     X_train = X
@@ -139,13 +139,19 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
     model = VotingClassifier(
         estimators=[
-            ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)),
             ('Neural-Network', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)),
             ('Ridge-Regression', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)),
             ('Linear Support Vector Machine with Stochastic Gradient Descent', SGDClassifier(fit_intercept=False, max_iter=100, random_state=RANDOM_STATE))
         ],
         voting='hard', n_jobs=-1
     )
+
+    # estimators=[
+    #     ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)),
+    #     ('Neural-Network', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)),
+    #     ('Ridge-Regression', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)),
+    #     ('Linear Support Vector Machine with Stochastic Gradient Descent', SGDClassifier(fit_intercept=False, max_iter=100, random_state=RANDOM_STATE))
+    # ],
 
     # DOES NOT WORK model = GaussianProcessClassifier()
     # DOES NOT WORK model = QuadraticDiscriminantAnalysis()
