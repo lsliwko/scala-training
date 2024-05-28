@@ -139,6 +139,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
     model = VotingClassifier(
         estimators=[
+            ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)),
             ('Neural-Network', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)),
             ('Ridge-Regression', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)),
             ('Linear Support Vector Machine with Stochastic Gradient Descent', SGDClassifier(fit_intercept=False, max_iter=100, random_state=RANDOM_STATE))
