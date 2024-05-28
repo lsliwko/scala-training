@@ -38,7 +38,7 @@ print(f"Dataset size = {X.shape}")
 DATASET_TRAIN_TEST_SPLIT_FLAG = True
 
 if DATASET_TRAIN_TEST_SPLIT_FLAG:
-    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.9, random_state=RANDOM_STATE)
+    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75, random_state=RANDOM_STATE)
 else:
     # use whole set to train
     X_train = X
@@ -49,60 +49,12 @@ print(f"TrainSet size = {X_train.shape}")
 print(f"TestSet size = {X_test.shape}")
 
 
-def get_classification(available_nodes_count_tmp):
-    if available_nodes_count_tmp == 1:
+def get_classification(count):
+    if count <= 1:
         return 'A'
-    elif available_nodes_count_tmp <= 500:
-        return 'B'
-    elif available_nodes_count_tmp <= 1000:
-        return 'C'
-    elif available_nodes_count_tmp <= 1500:
-        return 'D'
-    elif available_nodes_count_tmp <= 2000:
-        return 'E'
-    elif available_nodes_count_tmp <= 2500:
-        return 'F'
-    elif available_nodes_count_tmp <= 3000:
-        return 'G'
-    elif available_nodes_count_tmp <= 3500:
-        return 'H'
-    elif available_nodes_count_tmp <= 4000:
-        return 'I'
-    elif available_nodes_count_tmp <= 4500:
-        return 'J'
-    elif available_nodes_count_tmp <= 5000:
-        return 'K'
-    elif available_nodes_count_tmp <= 5500:
-        return 'L'
-    elif available_nodes_count_tmp <= 6000:
-        return 'M'
-    elif available_nodes_count_tmp <= 6500:
-        return 'N'
-    elif available_nodes_count_tmp <= 7000:
-        return 'O'
-    elif available_nodes_count_tmp <= 7500:
-        return 'P'
-    elif available_nodes_count_tmp <= 8000:
-        return 'Q'
-    elif available_nodes_count_tmp <= 8500:
-        return 'R'
-    elif available_nodes_count_tmp <= 9000:
-        return 'S'
-    elif available_nodes_count_tmp <= 9500:
-        return 'T'
-    elif available_nodes_count_tmp <= 10000:
-        return 'U'
-    elif available_nodes_count_tmp <= 10500:
-        return 'V'
-    elif available_nodes_count_tmp <= 11000:
-        return 'W'
-    elif available_nodes_count_tmp <= 11500:
-        return 'X'
-    elif available_nodes_count_tmp <= 12000:
-        return 'Y'
-    else:
+    elif count > 12000:
         return 'Z'
-
+    return chr((int(count) - 1) // 500 + 66)
 
 CLASSIFIER_OR_REGRESSOR_FLAG = True
 
@@ -123,8 +75,8 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # DONE model = ComplementNB(alpha=0.3)
     # DONE model = NearestCentroid()
     # DONE model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
-    # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
-    # DONE model = SGDClassifier(fit_intercept=False, max_iter=100, random_state=RANDOM_STATE)
+    model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
+    # DONE model = SGDClassifier(fit_intercept=False, max_iter=250, loss="modified_huber", random_state=RANDOM_STATE)
     # DONE model = GaussianNB()
 
     # import inspect
@@ -136,16 +88,36 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # DONE model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=30, random_state=RANDOM_STATE)    # AdaBoost
 
     # DONE model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=RANDOM_STATE)
-
+    '''
     model = VotingClassifier(
         estimators=[
-            ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)),
-            ('Neural-Network', MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)),
-            ('Ridge-Regression', RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)),
-            ('Linear Support Vector Machine with Stochastic Gradient Descent', SGDClassifier(fit_intercept=False, max_iter=100, random_state=RANDOM_STATE))
+            ('Random-Forest',
+             RandomForestClassifier(max_depth=10,
+                                    n_estimators=20,
+                                    max_features=None,
+                                    class_weight="balanced",
+                                    random_state=RANDOM_STATE)
+            ),
+            ('Neural-Network',
+             MLPClassifier(hidden_layer_sizes=(30, 30),
+                           max_iter=200,
+                           random_state=RANDOM_STATE)
+            ),
+            ('Ridge-Regression',
+             RidgeClassifier(alpha=0.3,
+                             fit_intercept=False,
+                             random_state=RANDOM_STATE)
+            ),
+            ('Linear Support Vector Machine with Stochastic Gradient Descent',
+             SGDClassifier(fit_intercept=False,
+                           max_iter=100,
+                           random_state=RANDOM_STATE)
+            )
         ],
-        voting='hard', n_jobs=-1
+        voting='hard',
+        n_jobs=-1
     )
+    '''
 
     # estimators=[
     #     ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)),
@@ -190,19 +162,17 @@ print(f"Predicted in {(perf_counter() - start) * 1000:.0f} ms")
 print(f"Accuracy report for {str(model)}...")
 print('-----')
 if CLASSIFIER_OR_REGRESSOR_FLAG:
-    y_true = y_test
-
-    print(f"Accuracy: {accuracy_score(y_true, y_pred)}")
+    print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
     print('-----')
 
-    print(classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
+    print(classification_report(y_test, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
     print('-----')
 
     # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
     # https://stackoverflow.com/questions/50325786/sci-kit-learn-how-to-print-labels-for-confusion-matrix
-    unique_label = np.unique([y_true, y_pred])
+    unique_label = np.unique([y_test, y_pred])
     confusion_matrix_pd = pd.DataFrame(
-        confusion_matrix(y_true, y_pred, labels=unique_label),
+        confusion_matrix(y_test, y_pred, labels=unique_label),
         index=['true:{:}'.format(x) for x in unique_label],
         columns=['pred:{:}'.format(x) for x in unique_label]
     )
