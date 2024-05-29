@@ -69,15 +69,15 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
     # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
-    # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Decision Tree classifier
-    # DONE model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
-    # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
-    # DONE model = ComplementNB(alpha=0.3)
-    # DONE model = NearestCentroid()
-    # DONE model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
-    model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
-    # DONE model = SGDClassifier(fit_intercept=False, max_iter=250, loss="modified_huber", random_state=RANDOM_STATE)
-    # DONE model = GaussianNB()
+    model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Decision Tree classifier
+    # model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
+    # model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
+    # model = ComplementNB(alpha=0.3)
+    # model = NearestCentroid()
+    # model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
+    # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
+    # model = SGDClassifier(fit_intercept=False, max_iter=250, loss="modified_huber", random_state=RANDOM_STATE)
+    # model = GaussianNB()
 
     # import inspect
     # from sklearn.utils.testing import all_estimators
@@ -170,6 +170,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     print(classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
     print('-----')
 
+    '''
     # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
     # https://stackoverflow.com/questions/50325786/sci-kit-learn-how-to-print-labels-for-confusion-matrix
     unique_label = np.unique([y_true, y_pred])
@@ -180,6 +181,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     )
     print(confusion_matrix_pd.to_string())
     print('-----')
+    '''
 
     # for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
     #     if val_y_true != val_y_pred:
