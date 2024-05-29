@@ -74,14 +74,23 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
         # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
         # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Decision Tree classifier
-        model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
-        # model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
-        # model = ComplementNB(alpha=0.3)
+        # DONE model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
+        # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
+        # DONE model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
+        # DONE model = GaussianNB()
+        # DONE model = ComplementNB(alpha=0.3)
         # DONE model = NearestCentroid()
-        # model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
-        # model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
-        # model = SGDClassifier(fit_intercept=False, max_iter=250, loss="modified_huber", random_state=RANDOM_STATE)
-        # model = GaussianNB()
+        # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
+        # DONE model = SGDClassifier(fit_intercept=False, max_iter=250, loss="modified_huber", random_state=RANDOM_STATE)
+
+        # import inspect
+        # from sklearn.utils.testing import all_estimators
+        # for name, clf in all_estimators(type_filter='classifier'):
+        #     if 'sample_weight' in inspect.getargspec(clf().fit)[0]: print name
+        # BernoulliNB,DecisionTreeClassifier,ExtraTreeClassifier,ExtraTreesClassifier,MultinomialNB,NuSVC,Perceptron,RandomForestClassifier,RidgeClassifierCV,SGDClassifier,SVC
+        # DONE model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=30, random_state=RANDOM_STATE)    # AdaBoost
+
+        model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=RANDOM_STATE)
 
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
@@ -89,15 +98,6 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
         print(line.splitlines(keepends=False)[2:4])
 
 
-# import inspect
-    # from sklearn.utils.testing import all_estimators
-    # for name, clf in all_estimators(type_filter='classifier'):
-    #     if 'sample_weight' in inspect.getargspec(clf().fit)[0]: print name
-    # model = AdaBoostClassifier(random_state=RANDOM_STATE)    # AdaBoost
-    # BernoulliNB,DecisionTreeClassifier,ExtraTreeClassifier,ExtraTreesClassifier,MultinomialNB,NuSVC,Perceptron,RandomForestClassifier,RidgeClassifierCV,SGDClassifier,SVC
-    # DONE model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=30, random_state=RANDOM_STATE)    # AdaBoost
-
-    # DONE model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=RANDOM_STATE)
     '''
     model = VotingClassifier(
         estimators=[
