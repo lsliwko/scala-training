@@ -62,24 +62,34 @@ CLASSIFIER_OR_REGRESSOR_FLAG = True
 model = None
 if CLASSIFIER_OR_REGRESSOR_FLAG:
     vfunc_get_classification = np.vectorize(get_classification)
-    y = vfunc_get_classification(y)
     y_train = vfunc_get_classification(y_train)
     y_test = vfunc_get_classification(y_test)
 
-    # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
+    for i in range(1,10):
+        # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
-    # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
-    # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Decision Tree classifier
-    model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
-    # model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
-    # model = ComplementNB(alpha=0.3)
-    # model = NearestCentroid()
-    # model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
-    # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
-    # model = SGDClassifier(fit_intercept=False, max_iter=250, loss="modified_huber", random_state=RANDOM_STATE)
-    # model = GaussianNB()
+        X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75)
+        y_train = vfunc_get_classification(y_train)
+        y_test = vfunc_get_classification(y_test)
 
-    # import inspect
+        # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
+        # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Decision Tree classifier
+        model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
+        # model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
+        # model = ComplementNB(alpha=0.3)
+        # DONE model = NearestCentroid()
+        # model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
+        # model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
+        # model = SGDClassifier(fit_intercept=False, max_iter=250, loss="modified_huber", random_state=RANDOM_STATE)
+        # model = GaussianNB()
+
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+        line = classification_report(y_test, y_pred, digits=4, zero_division=0, labels=np.unique(y_test))
+        print(line.splitlines(keepends=False)[2:4])
+
+
+# import inspect
     # from sklearn.utils.testing import all_estimators
     # for name, clf in all_estimators(type_filter='classifier'):
     #     if 'sample_weight' in inspect.getargspec(clf().fit)[0]: print name
@@ -189,6 +199,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # print('-----')
 else:
     pass
+
 
 SAVE_RESULTS_FLAG = False
 
