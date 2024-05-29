@@ -162,27 +162,29 @@ print(f"Predicted in {(perf_counter() - start) * 1000:.0f} ms")
 print(f"Accuracy report for {str(model)}...")
 print('-----')
 if CLASSIFIER_OR_REGRESSOR_FLAG:
-    print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
+    y_true = y_test
+
+    print(f"Accuracy: {accuracy_score(y_true, y_pred)}")
     print('-----')
 
-    print(classification_report(y_test, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
+    print(classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
     print('-----')
 
     # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
     # https://stackoverflow.com/questions/50325786/sci-kit-learn-how-to-print-labels-for-confusion-matrix
-    unique_label = np.unique([y_test, y_pred])
+    unique_label = np.unique([y_true, y_pred])
     confusion_matrix_pd = pd.DataFrame(
-        confusion_matrix(y_test, y_pred, labels=unique_label),
+        confusion_matrix(y_true, y_pred, labels=unique_label),
         index=['true:{:}'.format(x) for x in unique_label],
         columns=['pred:{:}'.format(x) for x in unique_label]
     )
     print(confusion_matrix_pd.to_string())
     print('-----')
 
-    for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
-        if val_y_true != val_y_pred:
-            print(f"Difference at row {index + 2}: {val_y_true} <> {val_y_pred}")
-    print('-----')
+    # for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
+    #     if val_y_true != val_y_pred:
+    #         print(f"Difference at row {index + 2}: {val_y_true} <> {val_y_pred}")
+    # print('-----')
 else:
     pass
 
