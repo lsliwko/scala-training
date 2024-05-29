@@ -38,7 +38,7 @@ print(f"Dataset size = {X.shape}")
 DATASET_TRAIN_TEST_SPLIT_FLAG = True
 
 if DATASET_TRAIN_TEST_SPLIT_FLAG:
-    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75, random_state=RANDOM_STATE)
+    X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75, random_state=42)
 else:
     # use whole set to train
     X_train = X
@@ -69,8 +69,8 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
     # DONE model = KNeighborsClassifier(n_neighbors=3, weights="distance")  # Nearest Neighbors
-    model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Decision Tree classifier
-    # model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
+    # DONE model = DecisionTreeClassifier(max_depth=15, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Decision Tree classifier
+    model = RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)  # Random Forest
     # model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
     # model = ComplementNB(alpha=0.3)
     # model = NearestCentroid()
