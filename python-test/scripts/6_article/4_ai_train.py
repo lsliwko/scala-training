@@ -25,7 +25,7 @@ from sklearn.metrics import accuracy_score
 print(f"The scikit-learn version: {sklearn.__version__}")
 
 MINI_TAG = ""  # "-mini"  # empty for full file
-RANDOM_STATE = 42
+RANDOM_STATE = None # 42
 
 print("Loading dataset...")
 # mini is for testing:

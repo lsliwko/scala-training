@@ -7,12 +7,14 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
+RANDOM_STATE = None  #42
+
 # load datapoints
 dataset = pd.read_csv(f'/Users/lsliwko/workspace/MASB-DATA/datapoint-task-merged-no-dups-cat-encoded.csv')
 X = dataset.iloc[:, 4:].values  # columns 4+ contain features
 y = dataset.iloc[:, 0].values  # nodes counts' are in the first column
 
-X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.9, random_state=42)
+X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75, random_state=RANDOM_STATE)
 
 # group classification function
 def get_group_classification(count):
@@ -30,15 +32,15 @@ model = VotingClassifier(
         ('Neural-Network',
          MLPClassifier(hidden_layer_sizes=(30, 30),
                        max_iter=200,
-                       random_state=42)),
+                       random_state=RANDOM_STATE)),
         ('Ridge-Regression',
          RidgeClassifier(alpha=0.3,
                          fit_intercept=False,
-                         random_state=42)),
+                         random_state=RANDOM_STATE)),
         ('SGDClassifier',
          SGDClassifier(fit_intercept=False,
                        max_iter=100,
-                       random_state=42))
+                       random_state=RANDOM_STATE))
     ],
     voting='hard',
     n_jobs=-1
