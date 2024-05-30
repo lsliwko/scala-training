@@ -90,44 +90,35 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
         # BernoulliNB,DecisionTreeClassifier,ExtraTreeClassifier,ExtraTreesClassifier,MultinomialNB,NuSVC,Perceptron,RandomForestClassifier,RidgeClassifierCV,SGDClassifier,SVC
         # DONE model = AdaBoostClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=30, random_state=RANDOM_STATE)    # AdaBoost
 
-        model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=RANDOM_STATE)
+        # DONE model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=RANDOM_STATE)
+
+        model = VotingClassifier(
+            estimators=[
+                ('Neural-Network',
+                 MLPClassifier(hidden_layer_sizes=(30, 30),
+                               max_iter=200,
+                               random_state=RANDOM_STATE)
+                 ),
+                ('Ridge-Regression',
+                 RidgeClassifier(alpha=0.3,
+                                 fit_intercept=False,
+                                 random_state=RANDOM_STATE)
+                 ),
+                ('Linear Support Vector Machine with Stochastic Gradient Descent',
+                 SGDClassifier(fit_intercept=False,
+                               max_iter=100,
+                               random_state=RANDOM_STATE)
+                 )
+            ],
+            voting='hard',
+            n_jobs=-1
+        )
 
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
         line = classification_report(y_test, y_pred, digits=4, zero_division=0, labels=np.unique(y_test))
         print(line.splitlines(keepends=False)[2:4])
 
-
-    '''
-    model = VotingClassifier(
-        estimators=[
-            ('Random-Forest',
-             RandomForestClassifier(max_depth=10,
-                                    n_estimators=20,
-                                    max_features=None,
-                                    class_weight="balanced",
-                                    random_state=RANDOM_STATE)
-            ),
-            ('Neural-Network',
-             MLPClassifier(hidden_layer_sizes=(30, 30),
-                           max_iter=200,
-                           random_state=RANDOM_STATE)
-            ),
-            ('Ridge-Regression',
-             RidgeClassifier(alpha=0.3,
-                             fit_intercept=False,
-                             random_state=RANDOM_STATE)
-            ),
-            ('Linear Support Vector Machine with Stochastic Gradient Descent',
-             SGDClassifier(fit_intercept=False,
-                           max_iter=100,
-                           random_state=RANDOM_STATE)
-            )
-        ],
-        voting='hard',
-        n_jobs=-1
-    )
-    '''
 
     # estimators=[
     #     ('Random-Forest', RandomForestClassifier(max_depth=10, n_estimators=20, max_features=None, class_weight="balanced", random_state=RANDOM_STATE)),
