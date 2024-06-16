@@ -1,66 +1,44 @@
-def get_classification(available_nodes_count_tmp):
-    if available_nodes_count_tmp <= 1:
-        return 'A'
-    elif available_nodes_count_tmp <= 500:
-        return 'B'
-    elif available_nodes_count_tmp <= 1000:
-        return 'C'
-    elif available_nodes_count_tmp <= 1500:
-        return 'D'
-    elif available_nodes_count_tmp <= 2000:
-        return 'E'
-    elif available_nodes_count_tmp <= 2500:
-        return 'F'
-    elif available_nodes_count_tmp <= 3000:
-        return 'G'
-    elif available_nodes_count_tmp <= 3500:
-        return 'H'
-    elif available_nodes_count_tmp <= 4000:
-        return 'I'
-    elif available_nodes_count_tmp <= 4500:
-        return 'J'
-    elif available_nodes_count_tmp <= 5000:
-        return 'K'
-    elif available_nodes_count_tmp <= 5500:
-        return 'L'
-    elif available_nodes_count_tmp <= 6000:
-        return 'M'
-    elif available_nodes_count_tmp <= 6500:
-        return 'N'
-    elif available_nodes_count_tmp <= 7000:
-        return 'O'
-    elif available_nodes_count_tmp <= 7500:
-        return 'P'
-    elif available_nodes_count_tmp <= 8000:
-        return 'Q'
-    elif available_nodes_count_tmp <= 8500:
-        return 'R'
-    elif available_nodes_count_tmp <= 9000:
-        return 'S'
-    elif available_nodes_count_tmp <= 9500:
-        return 'T'
-    elif available_nodes_count_tmp <= 10000:
-        return 'U'
-    elif available_nodes_count_tmp <= 10500:
-        return 'V'
-    elif available_nodes_count_tmp <= 11000:
-        return 'W'
-    elif available_nodes_count_tmp <= 11500:
-        return 'X'
-    elif available_nodes_count_tmp <= 12000:
-        return 'Y'
-    else:
-        return 'Z'
+# Making a get request
+import requests
+
+response = requests.get('https://jsonmock.hackerrank.com/api/medical_records')
+data = response.json()
+print(str(data))
+
+diagnosisName = 'Pulmonary embolism'
+doctorId = 2
+
+pulses = []
+for pageNo in range(1, data.get('total_pages')+1):
+    url = f'https://jsonmock.hackerrank.com/api/medical_records?page={pageNo}'
+    response = requests.get(url)
+    data = response.json()
+
+    medical_datas = data.get('data')
+    print(f'medical_datas: {medical_datas}')
+
+    for medical_data in medical_datas:
+        diagnosis = medical_data.get('diagnosis')
+        doctor = medical_data.get('doctor')
+        vitals = medical_data.get('vitals')
+        if (diagnosis.get('name') == diagnosisName) and (doctor.get('id') == doctorId):
+            pulses.append(vitals.get('pulse'))
+            print(f'Pulses: {pulses}')
 
 
-def get_classification2(count):
-    if count <= 1:
-        return 'A'
-    elif count > 12000:
-        return 'Z'
-    return chr((count - 1) // 500 + 66)
+print(f'{sum(pulses) / len(pulses)}')
 
 
-for x in [0,1,2,498,499,500,501,502,1000,1001,1500,1501,12000, 12001]:
-    print(f'true: {x}: {get_classification(x)}')
-    print(f'pred: {x}: {get_classification2(x)}')
+
+# pulses = []
+# for pageNo in range(1, data.get('total_pages')+1):
+#     response = requests.get(f'https://api.github.com?page={pageNo}')
+#     data = response.json()
+#     # print(str(data))
+#     for diagnosis in data.get('diagnosis'):
+#         if diagnosis.get('doctor').get('id') == doctorId:
+#             if diagnosis.get('name') == diagnosisName:
+#                 pulses.append(diagnosis.get('pulse'))
+
+
+

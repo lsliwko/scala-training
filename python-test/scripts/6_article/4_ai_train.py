@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import pyarrow.csv
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis, LinearDiscriminantAnalysis
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, AdaBoostClassifier, BaggingClassifier, \
     VotingClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
@@ -13,6 +13,7 @@ from sklearn.linear_model import LinearRegression, BayesianRidge, LogisticRegres
 from sklearn.naive_bayes import GaussianNB, BernoulliNB, MultinomialNB, CategoricalNB, ComplementNB
 from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier, NearestCentroid
 from sklearn.neural_network import MLPClassifier
+from sklearn.semi_supervised import LabelPropagation
 from sklearn.svm import SVC, NuSVC
 from sklearn.tree import DecisionTreeRegressor, ExtraTreeClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -78,6 +79,9 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
         # DONE model = MLPClassifier(hidden_layer_sizes=(30, 30), max_iter=200, random_state=RANDOM_STATE)  # Artificial Neural Network
         # DONE model = Perceptron(max_iter=100, random_state=RANDOM_STATE)
         # DONE model = GaussianNB()
+        # model = LinearDiscriminantAnalysis()
+        # model = RidgeClassifierCV()
+        model = LabelPropagation(max_iter=300)
         # DONE model = ComplementNB(alpha=0.3)
         # DONE model = NearestCentroid()
         # DONE model = RidgeClassifier(alpha=0.3, fit_intercept=False, random_state=RANDOM_STATE)
@@ -92,6 +96,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
 
         # DONE model = BaggingClassifier(estimator=ExtraTreeClassifier(splitter="random", class_weight="balanced", random_state=RANDOM_STATE), n_estimators=20, bootstrap=False, n_jobs=-1, random_state=RANDOM_STATE)
 
+        '''
         model = VotingClassifier(
             estimators=[
                 ('Neural-Network',
@@ -113,10 +118,23 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
             voting='hard',
             n_jobs=-1
         )
+        '''
 
+        print(f"Training {str(model)}...")
+        start = perf_counter()
         model.fit(X_train, y_train)
+        print(f"Trained in {(perf_counter() - start) * 1000:.0f} ms")
+
+        print(f"Predicting {str(model)}...")
+        start = perf_counter()
         y_pred = model.predict(X_test)
-        line = classification_report(y_test, y_pred, digits=4, zero_division=0, labels=np.unique(y_test))
+        print(f"Predicted in {(perf_counter() - start) * 1000:.0f} ms")
+
+        y_true = y_test
+
+        print(f"Accuracy: {accuracy_score(y_true, y_pred)}")
+        line = classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_test))
+        # print(line)
         print(line.splitlines(keepends=False)[2:4])
 
 
