@@ -66,7 +66,7 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     y_train = vfunc_get_classification(y_train)
     y_test = vfunc_get_classification(y_test)
 
-    for i in range(1,10):
+    for i in range(1,2):
         # https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html
 
         X_test, X_train, y_test, y_train = train_test_split(X, y, test_size=0.75)
@@ -189,18 +189,16 @@ if CLASSIFIER_OR_REGRESSOR_FLAG:
     print(classification_report(y_true, y_pred, digits=4, zero_division=0, labels=np.unique(y_true)))
     print('-----')
 
-    '''
     # print(confusion_matrix(y, y_pred, labels=np.unique(y)))
     # https://stackoverflow.com/questions/50325786/sci-kit-learn-how-to-print-labels-for-confusion-matrix
     unique_label = np.unique([y_true, y_pred])
     confusion_matrix_pd = pd.DataFrame(
         confusion_matrix(y_true, y_pred, labels=unique_label),
-        index=['true:{:}'.format(x) for x in unique_label],
-        columns=['pred:{:}'.format(x) for x in unique_label]
+        index=[f'true:{x}' for x in unique_label],
+        columns=[f'pred:{x}' for x in unique_label]
     )
     print(confusion_matrix_pd.to_string())
     print('-----')
-    '''
 
     # for index, (val_y_true, val_y_pred) in enumerate(zip(y_true, y_pred)):
     #     if val_y_true != val_y_pred:
