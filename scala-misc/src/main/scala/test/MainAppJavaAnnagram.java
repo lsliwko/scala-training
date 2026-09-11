@@ -4,35 +4,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainAppJavaLongestDistinctLetters {
+public class MainAppJavaAnnagram {
 
+//    Given two strings s and t, return the minimum window substring of s such that every character
+//    in t (including duplicates) is included in the window.
+//    If there is no such substring, return the empty string "".
+//
+//    Example:
+//    Input: s = "ADOBECODEBANC", t = "ABC"
+//    Output: "BANC"
 
-    /*
-    
-    Problem: Longest Repeating Character Replacement
-    Given a string s and an integer k, you can choose any k characters of the string and change them to
-    any other uppercase English letter. Return the length of the longest substring containing the same
-    letter, after performing this operation.
-
-    Example:
-    Input: s = "ABAB", k = 2
-    Output: 4
-    Explanation: Replace the two 'A's with two 'B's or vice versa.
-    
-    Input: s = "AABABBA", k = 1
-    Output: 4
-    Explanation: Replace one 'A' in the middle with 'B' to get "AABBBBA" → longest repeating substring is "BBBB" (length 4).
-    
-    */
-    
     public static void main(String[] args) {
-        MainAppJavaLongestDistinctLetters mainApp = new MainAppJavaLongestDistinctLetters();
-        var result = mainApp.longestRepeatingCharacterReplacement("aecebacceecae", "cab");
+        MainAppJavaAnnagram mainApp = new MainAppJavaAnnagram();
+        var result = mainApp.anagrams("aecebacceecae", "cea");
         
         System.out.println("Result: " + result);
     }
     
-    public List<Integer> longestRepeatingCharacterReplacement(String s, String p) {
+    public List<Integer> anagrams(String s, String p) {
         var resultIndices = new ArrayList<Integer>();
         if (s.length() < p.length()) return resultIndices;
         
