@@ -1,8 +1,8 @@
 package test;
 
-import java.util.*;
+import java.util.ArrayDeque;
 
-public class MainAppJava {
+public class MainAppJavaValidParetness {
 
 //Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 //
@@ -13,7 +13,7 @@ public class MainAppJava {
 //Every close bracket has a corresponding open bracket of the same type.
     
     public static void main(String[] args) {
-        MainAppJava mainApp = new MainAppJava();
+        MainAppJavaValidParetness mainApp = new MainAppJavaValidParetness();
 //        {
 //            var nums = new int[] {2,7,11,15};
 //            var result = mainApp.twoSum(nums, 9);
