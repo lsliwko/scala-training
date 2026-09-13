@@ -1,8 +1,6 @@
 package test;
 
-import java.util.*;
-
-public class MainAppJava {
+public class MainAppJavaRomanToInt {
 
 //Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 //
@@ -24,7 +22,7 @@ public class MainAppJava {
 //Given a roman numeral, convert it to an integer.
     
     public static void main(String[] args) {
-        MainAppJava mainApp = new MainAppJava();
+        MainAppJavaRomanToInt mainApp = new MainAppJavaRomanToInt();
 //        {
 //            var nums = new int[] {2,7,11,15};
 //            var result = mainApp.twoSum(nums, 9);
