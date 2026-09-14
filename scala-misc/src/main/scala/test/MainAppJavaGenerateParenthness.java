@@ -1,8 +1,9 @@
 package test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainAppJava {
+public class MainAppJavaGenerateParenthness {
 
 //Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 //Example 1:
@@ -13,7 +14,7 @@ public class MainAppJava {
 //Output: ["()"]
     
     public static void main(String[] args) {
-        MainAppJava mainApp = new MainAppJava();
+        MainAppJavaGenerateParenthness mainApp = new MainAppJavaGenerateParenthness();
         {
             var result = mainApp.generateParenthesis(4);
             System.out.println(result);
