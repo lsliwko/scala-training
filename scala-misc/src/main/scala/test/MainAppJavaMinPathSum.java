@@ -1,6 +1,6 @@
 package test;
 
-public class MainAppJava {
+public class MainAppJavaMinPathSum {
 
 //Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
 //
@@ -25,7 +25,7 @@ public class MainAppJava {
     
     
     public static void main(String[] args) {
-        MainAppJava mainApp = new MainAppJava();
+        MainAppJavaMinPathSum mainApp = new MainAppJavaMinPathSum();
 
         {
             var grid =  new int[][] {
