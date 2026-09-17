@@ -1,9 +1,6 @@
 package test;
 
-import javax.xml.crypto.dsig.spec.XPathType;
-import java.util.ArrayDeque;
-
-public class MainAppJava {
+public class MainAppJavaSearchMatrix {
 
 //You are given an m x n integer matrix with the following two properties:
 //
@@ -23,7 +20,7 @@ public class MainAppJava {
     
     
     public static void main(String[] args) {
-        MainAppJava mainApp = new MainAppJava();
+        MainAppJavaSearchMatrix mainApp = new MainAppJavaSearchMatrix();
 
         {
             var matrix = new int[][] {
