@@ -1,66 +1,79 @@
 package test;
-
-import javax.xml.crypto.dsig.spec.XPathType;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainAppJava {
 
-//You are given an m x n integer matrix with the following two properties:
+//You are given a 0-indexed array of integers nums of length n. You are initially positioned at index 0.
 //
-//Each row is sorted in non-decreasing order.
-//The first integer of each row is greater than the last integer of the previous row.
-//Given an integer target, return true if target is in matrix or false otherwise.
+//Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at index i, you can jump to any index (i + j) where:
 //
-//You must write a solution in O(log(m * n)) time complexity.
+//0 <= j <= nums[i] and
+//i + j < n
+//Return the minimum number of jumps to reach index n - 1. The test cases are generated such that you can reach index n - 1.
+//
+// 
 //
 //Example 1:
-//Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
-//Output: true
 //
+//Input: nums = [2,3,1,1,4]
+//Output: 2
+//Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
 //Example 2:
-//Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
-//Output: false
-    
+//
+//Input: nums = [2,3,0,1,4]
+//Output: 2
     
     public static void main(String[] args) {
         MainAppJava mainApp = new MainAppJava();
 
         {
-            var matrix = new int[][] {
-                { 1, 3, 5, 7},
-                {10,11,16,20},
-                {23,30,34,60}
-            };
-            var result = mainApp.searchMatrix(matrix, 11);
+            var nums = new int[] {0};
+            var result = mainApp.jump(nums);
+            System.out.println("RESULT: " + result);
+        }
+        {
+            var nums = new int[] {2,3,1,1,4};
+            var result = mainApp.jump(nums);
+            System.out.println("RESULT: " + result);
+        }
+        {
+            var nums = new int[] {2,3,0,1,4};
+            var result = mainApp.jump(nums);
+            System.out.println("RESULT: " + result);
+        }
+        {
+            var nums = new int[] {7,3,0,1,0};
+            var result = mainApp.jump(nums);
             System.out.println("RESULT: " + result);
         }
     }
-    
-    private int valueAt(int[][] matrix, int mid) {
-        var x = mid / matrix[0].length;
-        var y = mid % matrix[0].length;
-        return matrix[x][y];
-    }
 
-    public boolean searchMatrix(int[][] matrix, int target) {
-
-        int left = 0;
-        int right = matrix[0].length * matrix.length;
+    public int jump(int[] nums) {
+        if (nums == null || nums.length <= 1) return 0;
+        //System.out.println(Arrays.toString(nums));
         
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            
-            int value = valueAt(matrix, mid);
-            if (value == target) {
-                return true;
-            } else if (value < target) {
-                left = mid + 1;
-            } else  {
-                right = mid;
+        int jumps = 0;
+        int cur = nums.length - 1;
+        while (true) {
+            var bestJumpIndex = -1;
+            for (int i = cur - 1; i >= 0; i--) {
+                if (nums[i] >= cur - i) {
+                    bestJumpIndex = i;
+                }
             }
+
+            cur = bestJumpIndex;
+            
+            jumps++;
+            //System.out.println("JUMP TO: " + cur);
+            
+            if (cur == 0) break;
         }
         
-        return false;
+        return jumps;
     }
     
 }
