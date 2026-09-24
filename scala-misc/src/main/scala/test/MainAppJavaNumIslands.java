@@ -1,31 +1,39 @@
 package test;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class MainAppJava {
+public class MainAppJavaNumIslands {
 
-//You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+//Number of Islands
+//Medium
+//Topics
+//premium lock icon
+//Companies
+//Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
 //
-//Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
+//An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+//
+// 
 //
 //Example 1:
 //
-//Input: nums = [1,2,3,1]
-//Output: 4
-//Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
-//Total amount you can rob = 1 + 3 = 4.
-//
+//Input: grid = [
+//  ['1','1','1','1','0'],
+//  ['1','1','0','1','0'],
+//  ['1','1','0','0','0'],
+//  ['0','0','0','0','0']
+//]
+//Output: 1
 //Example 2:
 //
-//Input: nums = [2,7,9,3,1]
-//Output: 12
-//Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
-//Total amount you can rob = 2 + 9 + 1 = 12.
+//Input: grid = [
+//  ['1','1','0','0','0'],
+//  ['1','1','0','0','0'],
+//  ['0','0','1','0','0'],
+//  ['0','0','0','1','1']
+//]
+//Output: 3
 
     public static void main(String[] args) {
-        MainAppJava mainApp = new MainAppJava();
+        MainAppJavaNumIslands mainApp = new MainAppJavaNumIslands();
 
         {
             var grid = new char[][] {
