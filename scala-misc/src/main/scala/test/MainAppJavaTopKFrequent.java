@@ -1,8 +1,7 @@
 package test;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class MainAppJava {
+public class MainAppJavaTopKFrequent {
 
 //Top K Frequent Elements
 //Given an integer array nums and an integer k, return the k most frequent elements within the array.
@@ -23,7 +22,7 @@ public class MainAppJava {
 //Output: [7]
 
     public static void main(String[] args) {
-        MainAppJava mainApp = new MainAppJava();
+        MainAppJavaTopKFrequent mainApp = new MainAppJavaTopKFrequent();
 
         {
             var result = mainApp.topKFrequent(new int[] {2,2,3,1,1,1}, 2);
