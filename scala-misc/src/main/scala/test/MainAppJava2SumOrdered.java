@@ -1,9 +1,8 @@
 package test;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.stream.Collectors;
 
-public class MainAppJava {
+import java.util.Arrays;
+
+public class MainAppJava2SumOrdered {
 
 //Given an array of integers numbers that is sorted in non-decreasing order.
 //
@@ -27,7 +26,7 @@ public class MainAppJava {
 //The sum of 1 and 2 is 3. Since we are assuming a 1-indexed array, index1 = 1, index2 = 2. We return [1, 2].
 
     public static void main(String[] args) {
-        MainAppJava mainApp = new MainAppJava();
+        MainAppJava2SumOrdered mainApp = new MainAppJava2SumOrdered();
         
         {
             var result = mainApp.twoSum(new int[] {1,2,3,4}, 3);
