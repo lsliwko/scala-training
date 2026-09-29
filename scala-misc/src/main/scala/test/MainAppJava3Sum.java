@@ -23,7 +23,7 @@ public class MainAppJava3Sum {
         System.out.println("Result: " + result);
     }
     
-    public Set<List<Integer>> threeSum(int[] nums) {
+    public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         
         var results = new HashSet<List<Integer>>();
@@ -43,7 +43,7 @@ public class MainAppJava3Sum {
             }
         }
         
-        return results;
+        return results.stream().toList();
     }
 
 }
